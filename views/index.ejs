@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= data.title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script type='text/javascript' src="/javascripts/main.js"></script>
+        <script>
+            function next() {
+                window.location.href = '/pages/' + '<%= data.nextPage %>';
+            }
+        </script>
+    </head>
+  
+    <body>
+ <% data.nextPage %>
+        <!-- Navigation -->
+        <%- include partials/navigation.ejs %>
+
+        <!-- Content -->
+        <%if (data.type === 'editor') { %>
+            <%- include partials/editor.ejs ; %>
+        <% } else if (data.type === 'page') { %>
+            <%- include(data.currentPage) %>
+        <% } else if (data.type === '404') { %>
+            <%- include partials/pageNotFound.ejs ; %>
+        <% }%>
+
+    </body>
+</html>

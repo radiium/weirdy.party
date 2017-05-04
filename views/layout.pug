@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript' src="/javascripts/main.js")
+
+  body
+
+    button(onclick="save()") SAVE
+    button(onclick="openEditor()") +
+    button(onclick="index()") INDEX
+    
+    - var page = nextPage
+    if page !== 0 && page !== undefined && page !== ''
+      button(onclick="next('" + page + "')") NEXT
+    
+    block content
+      - var partial = page
+      p !{partial}
