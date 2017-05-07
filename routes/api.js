@@ -27,21 +27,20 @@ router.post('/uploadFile',
         var tmpName  = req.filename;
         var tmpPath  = req.path;
 
-        
-        /*
         var file     = req.file;
         var tmpPath  = file.path
         var imgPath  = 'public/images/' + file.originalname;
-        var htmlPath = 'images/' + file.originalname;
+        var htmlPath = 'http://localhost:7331/images/' + file.originalname;
+
 
         // Move file to images directory
         fs.createReadStream(tmpPath)
         .pipe(fs.createWriteStream(imgPath));
 
-        files.cleanTmpDir()
-        */
+        files.cleanTmpDir('public/tmp/');
+
         var data = {
-            file: '/images/fond_drawing.jpg',
+            file: htmlPath,
             //statusPropertyName: 'succes'
             success: true
         };
@@ -58,6 +57,10 @@ router.post('/uploadPage', function(req, res, next) {
 
     var pageName  = req.body.pageName.replace(/\s+/g, '-');
     var content   = req.body.content;
+
+    winston.info(pageName);
+    winston.info(content);
+
     /*
     var pugContent;
     html2pug.convertHtml(content, {bodyless: true}, function (err, pug) {

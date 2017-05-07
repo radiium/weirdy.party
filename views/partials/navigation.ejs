@@ -1,18 +1,41 @@
-<%- data.nextPage %>
-<form>
-    <!-- Save Button -->
-    <input type="button" onclick="save()" value="SAVE"></input>
 
-    <!-- Open editor Button -->
-    <% if (data.type !== 'editor') { %>
-        <input type="button" onclick="openEditor()" value="+"></input>
-    <% } %>
+<div id="navigation">
 
-    <!-- Go to next page Button -->
-    <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
-        <input type="button" onclick="next()" value="NEXT"></input>
-    <% } %>
+    <div id="toggle">+</div>
 
-    <!-- Return to first page Button -->
-    <input type="button" onclick="index()" value="INDEX"></input>
-</form>
+    <div id="toolbar">
+        <!-- Save Button -->
+        <input type="button" onclick="save()" value="SAVE"></input>
+
+        <!-- Open editor Button -->
+        <% if (data.type !== 'editor') { %>
+            <input type="button" onclick="openEditor()" value="+"></input>
+        <% } %>
+
+        <!-- Next page Button -->
+        <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
+            <input type="button" onclick="next()" value="NEXT"></input>
+        <% } %>
+
+        <!-- Return to first page Button -->
+        <input type="button" onclick="index()" value="INDEX"></input>
+
+    </div>
+
+    <!-- jQuery -->
+    <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
+
+
+    <script>
+        $( "#toggle" ).click(function() {
+            //$('#navigation').toggleClass( "active" );
+
+            $('#toolbar').css('height', '200');
+            $('#toolbar').css('opacity', '1');
+
+            //$(".icons").toggleClass( "open" );
+        });
+    </script>
+
+</div>
+

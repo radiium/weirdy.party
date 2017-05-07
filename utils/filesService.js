@@ -20,7 +20,7 @@ files.countObjInDir = function(dir) {
 }
 
 // Clean objects in a directory
-files.cleanTmpDir = function() {
+files.cleanTmpDir = function(TMP_DIR) {
     fs.readdir(TMP_DIR, (err, files) => {
         files.forEach(file => {
             //winston.info("Remove : '" + TMP_DIR + "/" + file + "'");

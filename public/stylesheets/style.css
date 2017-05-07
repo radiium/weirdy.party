@@ -1,146 +1,72 @@
 body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    /*padding: 50px;*/
+    padding: 0;
+    margin: 0 auto;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+/* Navigation */
+#navigation {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    
+    /*margin-left: -100px;*/
+}
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    transition: all ease-in-out 1s;
+    height: 0; 
+    opacity: 0;
+}
+#navigation input {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border: none;
+    margin-bottom: 5px;
+}
+#navigation input:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    /*color: white;*/
+}
+
+#toggle {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    width: 50px;
+    height: 50px;
+    left: 200px;
+    margin-bottom: 5px;
+    border-radius: 25px;
+    line-height: 50px;
+    text-align: center;
+    -webkit-transition: all ease-in-out 0.2s;
+    -moz-transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.2s;
+}
+#toggle:hover {
+    border-radius: 0;
+}
+
+@keyframes navigation {
+    0%   {top: 0px;}
+    25%  {top: 200px;}
+    50%  {top: 100px;}
+    75%  {top: 200px;}
+    100% {top: 0px;}
 }
 
 
-
-html,
-body,
-div,
-span,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-abbr,
-code,
-em,
-img,
-small,
-strong,
-sub,
-sup,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-footer,
-header,
-nav,
-section,
-time,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font-weight: inherit;
-  vertical-align: baseline;
-  background: transparent;
-}
-
-article,
-aside,
-figure,
-footer,
-header,
-nav,
-section {
-  display: block;
-}
-
-html {
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-img,
-object {
-  max-width: 100%;
-}
-
-ul {
-  list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-th {
-  font-weight: bold;
-  vertical-align: bottom;
-}
-
-td {
-  font-weight: normal;
-  vertical-align: top;
-}
-
-input,
-select {
-  vertical-align: middle;
-}
-
-input[type="radio"] {
-  vertical-align: text-bottom;
-}
-
-input[type="checkbox"] {
-  vertical-align: bottom;
-}
-
-strong {
-  font-weight: bold;
-}
-
-label,
-input[type="file"],
-button {
-  cursor: pointer;
-}
-
-button,
-input,
-select,
-textarea {
-  margin: 0;
-  border: 0;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0
+/* Pages */
+.page-wrap {
+    height: 100%;
 }
