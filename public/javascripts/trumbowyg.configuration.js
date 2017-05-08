@@ -48,37 +48,8 @@ $('#editor').trumbowyg({
                 }
             } 
         },
-
-//         // Add background image
-//         bckImg: {
-//             title: 'Add background image',
-//             ico: 'insert-image',
-//             fn: function addBckGrdImage() {
-//                 // Open a modal box
-//                 var $modal = $("#editor").trumbowyg("openModalInsert", {
-//                     title: "A title for modal box",
-//                     content: "<p>Content in HTML which you want include in created modal box</p>",
-//                     function() {
-//                         return;
-//                     }
-// 
-//                 });
-// 
-//                 // Listen clicks on modal box buttons
-//                 $modal.on('trumbowyg-confirm', function(e){
-//                     // Save datas
-//                     console.log(e)
-//                     $("#editor").trumbowyg("closeModal");
-//                 });
-//                 $modal.on('trumbowyg-cancel', function(e){
-//                     $("#editor").trumbowyg("closeModal");
-//                 });
-//             }
-//         },
-
         // Save page to server
         save: {
-
             ico: 'save',
             fn: function() {
 
@@ -91,7 +62,7 @@ $('#editor').trumbowyg({
                 }
 
                 var content = $('#editor').trumbowyg('html');
-                var html    = '<div class=\'page-wrap\' ';
+                var html    = '<div class=\'page-wrap\'>';
 
                 var bckImg = $('#editor').css("background-image");
                 var bckAtt = $('#editor').css("background-attachment");
@@ -99,26 +70,33 @@ $('#editor').trumbowyg({
                 var bckRep = $('#editor').css("background-repeat");
                 var bckSiz = $('#editor').css("background-size");
 
+                
+
                 if (bckImg !== '') {
-                    html += 'style=\'';
-                    html += 'background-image: ' + bckImg + '; ';
+                    var bckStyle = 
+                        '<style id=\'bckgrdImgStyle\'>body {' +
+                        'background-image: ' + bckImg + ' !important;'
 
                     if (bckAtt !== '') {
-                        html += 'background-attachment: ' + bckAtt + '; ';
+                        bckStyle += 'background-attachment: ' + bckAtt + ';';
                     }
                     if (bckPos !== '') {
-                        html += 'background-position: ' + bckPos + '; ';
+                        bckStyle += 'background-position: ' + bckPos + ';';
                     }
                     if (bckRep !== '') {
-                        html += 'background-repeat: ' + bckRep + '; ';
+                        bckStyle += 'background-repeat: ' + bckRep + ';';
                     }
                     if (bckSiz !== '') {
-                        html += 'background-size: ' + bckSiz + '; ';
+                        bckStyle += 'background-size: ' + bckSiz + ';';
                     }
-
-                    html += '\'';
+                    bckStyle += '}</style>'
+                    console.log(bckStyle);
+                    html += bckStyle
                 }
-                html += '>' + content + '</div>';
+
+                html += content + '</div>';
+                console.log('html');
+                console.log(html);
 
                 if (html.length > 0) {
 

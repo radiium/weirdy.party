@@ -4,9 +4,9 @@
     <div id="toggle" class="item-btn">+</div>
 
     <div id="toolbar">
-        <!-- Save Button 
-        <input class="toolbar-btn item-btn" type="button" onclick="save()" value="SAVE"></input>
-        -->
+        
+        <input class="toolbar-btn item-btn" type="button" onclick="help()" value="&#xf128;"></input>
+        
         <!-- Open editor Button -->
         <% if (data.type !== 'editor') { %>
             <input class="toolbar-btn item-btn" type="button" onclick="openEditor()" value="&#xf196;"></input>
@@ -14,40 +14,48 @@
 
         <!-- Return to first page Button -->
         <input class="toolbar-btn item-btn" type="button" onclick="index()" value="&#xf015;"></input>
-
-        <!-- Previous page Button -->
-        <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
-            <input class="toolbar-btn item-btn" type="button" onclick="prev()" value="&#xf100;"></input>
-        <% } %>
-
-        <!-- Next page Button -->
-        <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
-            <input class="toolbar-btn item-btn" type="button" onclick="next()" value="&#xf101;"></input>
-        <% } %>
-
     </div>
 
-    <script>
-        $( "#toggle" ).click(function() {
-            var tb = $('#toolbar').css('width');
-            var bt =  $('.toolbar-btn').css('width');
+    <!-- Previous page Button -->
+    <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
+        <input class="nav-btn item-btn" type="button" onclick="prev()" value="&#xf100;"></input>
+    <% } %>
 
-            console.log(tb);
-            console.log(bt);
+    <!-- Next page Button -->
+    <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
+        <input class="nav-btn item-btn" type="button" onclick="next()" value="&#xf101;"></input>
+    <% } %>
+</div>
 
-            if (tb === '180px') {
-                $('#toggle').css('border-radius', '0');
-                $('#toggle').toggleClass('rot');
-                $('#toolbar').css('width', '0');
-                $('.toolbar-btn').css('width', '0');
-            } else {
-                $('#toggle').css('border-radius', '25px');
-                $('#toggle').toggleClass('rot');
-                $('#toolbar').css('width', '180px');
-                $('.toolbar-btn').css('width', '50px');
-            }
-        });
-    </script>
+
+<div id="help">
+
 
 </div>
+
+
+
+
+
+<script>
+    $( "#toggle" ).click(function() {
+        var tb = $('#toolbar').css('width');
+        var bt =  $('.toolbar-btn').css('width');
+
+        console.log(tb);
+        console.log(bt);
+
+        if (tb === '185px') {
+            $('#toggle').css('border-radius', '0');
+            $('#toggle').toggleClass('rotation');
+            $('#toolbar').css('width', '0');
+            $('.toolbar-btn').css('width', '0');
+        } else {
+            $('#toggle').css('border-radius', '25px');
+            $('#toggle').toggleClass('rotation');
+            $('#toolbar').css('width', '185px');
+            $('.toolbar-btn').css('width', '50px');
+        }
+    });
+</script>
 

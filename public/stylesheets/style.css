@@ -2,20 +2,35 @@
         General
 ************************/
 html{
-    padding:0;
-    margin:0;
-    /*width:100%;
+    padding: 0;
+    margin: 0;
+    width:100%;
     height:auto;
-    background:black;*/
+    /*background:black;*/
 }
 
 body{
-    padding:0;
-    margin:0;
-    width:100%;
-    height:100%;
-    /*background:purple;*/
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+/************************
+        Pages
+************************/
+.page-wrap {
+    width: auto;
+    height: 100%;
+    margin: 10px;
+    overflow: hidden;
+}
+
+/************************
+          404
+************************/
+#pageNotFound {
+    text-align: center;
 }
 
 /************************
@@ -38,34 +53,23 @@ input[type="button"] {
     flex-direction: row;
     flex-wrap: nowrap;
     position: fixed;
-    padding: 10px;
+    left: 10px;
+    bottom: 10px;
 }
 #toolbar {
     display: flex;
     flex-direction: row;
-    -webkit-transition: all ease-in-out 0.2s;
-       -moz-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s;
     width: 0; 
-    height: 50px; 
-}
-.toolbar-btn {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 0;
     height: 50px;
-    border: none;
-    margin-right: 5px;
-    font-size: 2rem;
     -webkit-transition: all ease-in-out 0.2s;
        -moz-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s;
-}
-#navigation input:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+            transition: all ease-in-out 0.2s; 
 }
 
+/* Toggle Button */
 #toggle {
     background-color: rgba(0, 0, 0, 0.8);
+    color: white;
     width: 50px;
     height: 50px;
     left: 200px;
@@ -82,30 +86,44 @@ input[type="button"] {
 #toggle:hover {
     border-radius: 25px;
 }
-.rot {
+.rotation {
     -webkit-transform: rotate(135deg);
        -moz-transform: rotate(135deg);
          -o-transform: rotate(135deg);
             transform: rotate(135deg);
 }
 
+/* Buttons */
 .item-btn {
+    font-size: 2rem;
+    border: none;
     color: white;
+    font-size: 2rem;
     cursor: pointer;
+    margin-right: 5px;
+    height: 50px;
+}
+.toolbar-btn {
+    background-color: rgba(20, 20, 20, 0.5);
+    width: 0;
+    -webkit-transition: all ease-in-out 0.2s;
+       -moz-transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.2s;
+}
+.nav-btn {
+    background-color: rgba(20, 20, 20, 0.5);
+    width: 50px;
+}
+
+.toolbar-btn:hover,
+.nav-btn:hover {
+    background-color: rgba(20, 20, 20, 0.9);
+}
+
+/* Help popup */
+#help {
+    
 }
 
 
-/************************
-        Pages
-************************/
-.page-wrap {
-    height: 100%;
-    overflow: hidden;
-}
 
-/************************
-          404
-************************/
-#pageNotFound {
-    text-align: center;
-}
