@@ -5,7 +5,7 @@
 
     <div id="toolbar">
         
-        <input class="toolbar-btn item-btn" type="button" onclick="help()" value="&#xf128;"></input>
+        <input id="infos-open" class="toolbar-btn item-btn" type="button"  value="&#xf128;"></input>
         
         <!-- Open editor Button -->
         <% if (data.type !== 'editor') { %>
@@ -28,9 +28,22 @@
 </div>
 
 
-<div id="help">
+<div id="infos">
+    <div class="infos-header infos-box">
+        <div class="head-left">
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <i class="fa fa-question" aria-hidden="true"></i>
+            &nbsp;-&nbsp;infos
+        </div>
+        <div class="head-right">
+            <i id="infos-close" class="fa fa-times-circle-o" aria-hidden="true"></i>
+        </div>
+    </div>
 
-
+    <div class="infos-content infos-box">
+        <h4>What</h4>
+        <p>&nbsp;- A simple site</p>
+    </div>
 </div>
 
 
@@ -38,14 +51,9 @@
 
 
 <script>
+    // Togle toolbar button
     $( "#toggle" ).click(function() {
-        var tb = $('#toolbar').css('width');
-        var bt =  $('.toolbar-btn').css('width');
-
-        console.log(tb);
-        console.log(bt);
-
-        if (tb === '185px') {
+        if ($('#toolbar').css('width') === '185px') {
             $('#toggle').css('border-radius', '0');
             $('#toggle').toggleClass('rotation');
             $('#toolbar').css('width', '0');
@@ -55,6 +63,22 @@
             $('#toggle').toggleClass('rotation');
             $('#toolbar').css('width', '185px');
             $('.toolbar-btn').css('width', '50px');
+        }
+    });
+    // Open close button from toolbar 
+    $( "#infos-open" ).click(function() {
+        if ($('#infos').css('top') === '-300px') {
+            $('#infos').css('top', '50px');
+        } else {
+            $('#infos').css('top', '-300px');
+        }
+    });
+    // Close button on infos popup
+    $( "#infos-close" ).click(function() {
+        if ($('#infos').css('top') === '-300px') {
+            $('#infos').css('top', '50px');
+        } else {
+            $('#infos').css('top', '-300px');
         }
     });
 </script>

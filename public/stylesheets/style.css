@@ -120,9 +120,75 @@ input[type="button"] {
     background-color: rgba(20, 20, 20, 0.9);
 }
 
-/* Help popup */
-#help {
+/* infos popup */
+#infos {
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    position: fixed;
+    margin: 0 auto;
+    /*top: calc(50% - 150px);*/
+    top: -300px;
+    left: calc(50% - 160px);
+    background-color: rgba(20, 20, 20, 0.9);
+    color: white;
+    width: 320px;
+    min-height: 300px;
+    -webkit-transition: all ease-in-out 0.2s;
+       -moz-transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.2s;
+}
+.infos-box {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.infos-head-foot {
     
+}
+
+#infos .infos-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: gray;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+#infos .infos-header .head-left {
+    padding-left: 20px;
+    font-size: 1.5rem;
+}
+
+#infos .infos-header .head-right {
+    font-size: 1.8rem;
+}
+#infos .infos-header .head-right i {
+    padding: 0.1rem;
+    /*border-radius: 0.9rem;*/
+    border: 1px solid white;
+}
+#infos .infos-header .head-right:hover i {
+    background-color: black;
+    border: 1px solid black;
+    font-size: 1.8rem;
+}
+
+#infos .infos-content {
+    flex: 1;
+}
+
+
+.infos-close {
+    background-color: black;
+    font-size: 1.3rem;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 
