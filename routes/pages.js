@@ -35,14 +35,20 @@ router.get('/pages/:page', function(req, res, next) {
         data.currentPage = currentPage;
 
         // Get and set next page if exist
-        var testNextPage = pages.getPrevPage(pageName);
+        var testPrevPage = pages.getPrevPage(pageName);
+        if (testPrevPage && testPrevPage !== '') {
+            data.prevPage = testPrevPage;
+        }
+
+        // Get and set previous page if exist
+        var testNextPage = pages.getNextPage(pageName);
         if (testNextPage && testNextPage !== '') {
             data.nextPage = testNextPage;
         }
 
         res.render('index', {data: data});
     } else {
-        //res.redirect('/404');
+        res.redirect('/404');
     }
 });
 

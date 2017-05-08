@@ -1,8 +1,7 @@
 // Buttons
 function index() {
-    console.log('=> go index');
-    console.log(window.location.href);
-    //window.location.href = '/'
+    console.log('=> Go index');
+    window.location.href = window.location.origin;
 }
 
 /*

@@ -13,7 +13,7 @@ var pages = {};
 
 //-----------------------------------------------------------------------------
 // Return array of pages
-function getPagesList(dir, cb) {
+function getPagesList(dir, callback) {
     
     
     fs.readdir(dir, function(err, files){
@@ -31,7 +31,7 @@ function getPagesList(dir, cb) {
             return v.name;
         });
 
-        return cb(files);
+        return callback(files);
     }); 
 
 
@@ -68,23 +68,21 @@ pages.getCurrentPage = function() {
 
 //-----------------------------------------------------------------------------
 // Get next page
-pages.getNextPage = function(page) {
-    var nextPage = '';
+pages.getPrevPage = function(page) {
+    var prevPage = '';
     for (var i = 0; i < global.PAGES.length; i++) {
-        winston.info();
-        if (nextPage === global.PAGES[i]) {
-            
+        if (page === global.PAGES[i]) {
             if ((i + 1) < global.PAGES.length) {
-                p = global.PAGES[i];
+                prevPage = global.PAGES[i + 1];
             }
         }
     }
-    return nextPage
+    return prevPage
 };
 
 //-----------------------------------------------------------------------------
 // Get next page
-pages.getPrevPage = function(page) {
+pages.getNextPage = function(page) {
     var nextPage = '';
     for (var i = global.PAGES.length; i >= 0 ; i--) {
         if (page === global.PAGES[i]) {
@@ -93,15 +91,14 @@ pages.getPrevPage = function(page) {
             }
         }
     }
-    winston.info(nextPage);
     return nextPage;
 };
 
 //-----------------------------------------------------------------------------
 // Get current page
-pages.getPagesList = function() {
-    return global.PAGES;
-};
+//pages.getPagesList = function() {
+//    return global.PAGES;
+//};
 
 //-----------------------------------------------------------------------------
 // Get current page

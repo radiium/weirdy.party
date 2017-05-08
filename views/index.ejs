@@ -11,6 +11,9 @@
 
         <script type='text/javascript' src="/javascripts/main.js"></script>
         <script>
+            function prev() {
+                window.location.href = '/pages/' + '<%= data.prevPage %>';
+            }
             function next() {
                 window.location.href = '/pages/' + '<%= data.nextPage %>';
             }
@@ -18,7 +21,6 @@
     </head>
   
     <body>
- <% data.nextPage %>
         <!-- Navigation -->
         <%- include partials/navigation.ejs %>
 
