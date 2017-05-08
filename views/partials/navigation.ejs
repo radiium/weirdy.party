@@ -1,39 +1,51 @@
 
 <div id="navigation">
 
-    <div id="toggle">+</div>
+    <div id="toggle" class="item-btn">+</div>
 
     <div id="toolbar">
-        <!-- Save Button -->
-        <input type="button" onclick="save()" value="SAVE"></input>
-
+        <!-- Save Button 
+        <input class="toolbar-btn item-btn" type="button" onclick="save()" value="SAVE"></input>
+        -->
         <!-- Open editor Button -->
         <% if (data.type !== 'editor') { %>
-            <input type="button" onclick="openEditor()" value="+"></input>
+            <input class="toolbar-btn item-btn" type="button" onclick="openEditor()" value="&#xf196;"></input>
+        <% } %>
+
+        <!-- Return to first page Button -->
+        <input class="toolbar-btn item-btn" type="button" onclick="index()" value="&#xf015;"></input>
+
+        <!-- Previous page Button -->
+        <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
+            <input class="toolbar-btn item-btn" type="button" onclick="prev()" value="&#xf100;"></input>
         <% } %>
 
         <!-- Next page Button -->
         <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
-            <input type="button" onclick="next()" value="NEXT"></input>
+            <input class="toolbar-btn item-btn" type="button" onclick="next()" value="&#xf101;"></input>
         <% } %>
-
-        <!-- Return to first page Button -->
-        <input type="button" onclick="index()" value="INDEX"></input>
 
     </div>
 
-    <!-- jQuery -->
-    <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
-
-
     <script>
         $( "#toggle" ).click(function() {
-            //$('#navigation').toggleClass( "active" );
+            var tb = $('#toolbar').css('width');
+            var bt =  $('.toolbar-btn').css('width');
 
-            $('#toolbar').css('height', '200');
-            $('#toolbar').css('opacity', '1');
+            console.log(tb);
+            console.log(bt);
 
-            //$(".icons").toggleClass( "open" );
+            if (tb === '180px') {
+                $('#toggle').css('border-radius', '0');
+                $('#toggle').toggleClass('rot');
+                $('#toolbar').css('width', '0');
+                $('.toolbar-btn').css('width', '0');
+            } else {
+                $('#toggle').css('border-radius', '25px');
+                $('#toggle').toggleClass('rot');
+                $('#toolbar').css('width', '180px');
+                $('.toolbar-btn').css('width', '50px');
+            }
         });
     </script>
 

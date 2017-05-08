@@ -82,31 +82,43 @@ $('#editor').trumbowyg({
             ico: 'save',
             fn: function() {
 
+                console.log('=> Save page');
+
                 var pageName = prompt("Please enter your page name", "");
                 if (pageName === "") {
                     var date = new Date().getTime();
                     pageName = 'page-' + date;
                 }
 
-                console.log('=> Save page');
-                console.log($('#editor'));
-
                 var content = $('#editor').trumbowyg('html');
+                var html    = '<div class=\'page-wrap\' ';
 
-                var html = '<div class=\'page-wrap\' ';
+                var bckImg = $('#editor').css("background-image");
+                var bckAtt = $('#editor').css("background-attachment");
+                var bckPos = $('#editor').css("background-position");
+                var bckRep = $('#editor').css("background-repeat");
+                var bckSiz = $('#editor').css("background-size");
 
-                var bck = $('#editor').css("background-image");
-                if (bck !== '') {
-                    html += 'style=\'background-image: ' + bck + '; ';
-                    var repeat = $('#editor').css("background-repeat");
-                    if (repeat !== '') {
-                        html += 'background-repeat: ' + repeat + ';\' ';
-                    } else {
-                        html += ';\''
+                if (bckImg !== '') {
+                    html += 'style=\'';
+                    html += 'background-image: ' + bckImg + '; ';
+
+                    if (bckAtt !== '') {
+                        html += 'background-attachment: ' + bckAtt + '; ';
                     }
+                    if (bckPos !== '') {
+                        html += 'background-position: ' + bckPos + '; ';
+                    }
+                    if (bckRep !== '') {
+                        html += 'background-repeat: ' + bckRep + '; ';
+                    }
+                    if (bckSiz !== '') {
+                        html += 'background-size: ' + bckSiz + '; ';
+                    }
+
+                    html += '\'';
                 }
                 html += '>' + content + '</div>';
-                console.log(bck);
 
                 if (html.length > 0) {
 
@@ -122,7 +134,6 @@ $('#editor').trumbowyg({
                         dataType: 'json',
 
                         success:  function (data) {
-                            console.log(data);
                             if (data.html) {
                             
                             } else {
@@ -162,6 +173,6 @@ $('#editor').trumbowyg({
 });
 
 $('#editor').trumbowyg().on('tbwclose', function() {
-    console.log('tbwclose!');
+    //console.log('tbwclose!');
     
 });

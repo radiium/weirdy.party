@@ -1,72 +1,104 @@
-body {
-    /*padding: 50px;*/
-    padding: 0;
-    margin: 0 auto;
+/************************
+        General
+************************/
+html{
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100%;
+    background:black;
+}
+
+body{
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100%;
+    background:purple;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-    color: #00B7FF;
+/************************
+        Editor
+************************/
+#editor-title {
+    text-align: center;
 }
-/* Navigation */
+
+/************************
+        Navigation
+************************/
+input[type="button"] {
+    font-family: FontAwesome;
+    padding: 0;
+}
 #navigation {
+    z-index: 999999;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     position: fixed;
-    width: 200px;
-    height: 200px;
     padding: 10px;
-    
-    /*margin-left: -100px;*/
 }
 #toolbar {
     display: flex;
-    flex-direction: column;
-    transition: all ease-in-out 1s;
-    height: 0; 
-    opacity: 0;
+    flex-direction: row;
+    -webkit-transition: all ease-in-out 0.2s;
+       -moz-transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.2s;
+    width: 0; 
+    height: 50px; 
 }
-#navigation input {
+.toolbar-btn {
     background-color: rgba(0, 0, 0, 0.5);
-    width: 50px;
+    width: 0;
     height: 50px;
     border: none;
-    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 2rem;
+    -webkit-transition: all ease-in-out 0.2s;
+       -moz-transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.2s;
 }
 #navigation input:hover {
     background-color: rgba(0, 0, 0, 0.3);
-    /*color: white;*/
 }
 
 #toggle {
     background-color: rgba(0, 0, 0, 0.8);
-    color: white;
     width: 50px;
     height: 50px;
     left: 200px;
-    margin-bottom: 5px;
-    border-radius: 25px;
-    line-height: 50px;
+    font-size: 2rem;
+    margin-right: 5px;
+    border-radius: 0;
+    line-height: 45px;
     text-align: center;
-    -webkit-transition: all ease-in-out 0.2s;
-    -moz-transition: all ease-in-out 0.2s;
-    transition: all ease-in-out 0.2s;
+    -webkit-transition: all ease-in-out 0.4s;
+       -moz-transition: all ease-in-out 0.4s;
+         -o-transition: all ease-in-out 0.4s;
+            transition: all ease-in-out 0.4s;
 }
 #toggle:hover {
-    border-radius: 0;
+    border-radius: 25px;
+}
+.rot {
+    -webkit-transform: rotate(135deg);
+       -moz-transform: rotate(135deg);
+         -o-transform: rotate(135deg);
+            transform: rotate(135deg);
 }
 
-@keyframes navigation {
-    0%   {top: 0px;}
-    25%  {top: 200px;}
-    50%  {top: 100px;}
-    75%  {top: 200px;}
-    100% {top: 0px;}
+.item-btn {
+    color: white;
+    cursor: pointer;
 }
 
 
-/* Pages */
+/************************
+        Pages
+************************/
 .page-wrap {
     height: 100%;
+    overflow: hidden;
 }
