@@ -1,6 +1,7 @@
 'use strict';
 
 var express       = require('express');
+//var session       = require('express-session');
 var path          = require('path');
 var favicon       = require('serve-favicon');
 var logger        = require('morgan');
@@ -9,6 +10,7 @@ var helmet        = require('helmet');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
 var dotenv        = require('dotenv');
+//var passport      = require('passport');  
 
 var files         = require('./utils/filesService');
 var pages         = require('./utils/pagesService');
@@ -18,12 +20,10 @@ var pages         = require('./utils/pagesService');
 // Setup environment variables NODE_ENV=development
 if (process.env.NODE_ENV === 'development') {
     winston.info('[SERVER] Running in \'development\' mode');
-    dotenv.config(
-        { path: './environment/dev.env' })
+    dotenv.config({ path: './environment/dev.env' })
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
     winston.info('[SERVER] Running in \'production\' mode');
-    dotenv.config(
-        { path: '/var/www/radiium.space/server/environment/prod.env' })
+    dotenv.config({ path: '/var/www/weirdy.party/environment/prod.env' })
 }
 
 
@@ -33,22 +33,16 @@ winston.info('[SERVER] Configuration');
 
 var app = express();
 
+// Logger (morgan)
+//app.use(logger('dev'));
+app.use(logger('common'));
+
 // Path setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('view cache', false);
-app.locals.basedir = app.get('views');
-
 app.use(express.static(path.join(__dirname, 'public'), { redirect : false }));
-app.use(express.static(path.join(__dirname, 'partials/pages'), { redirect : false }));
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-pages.init();
-
-// Logger (morgan)
-//app.use(logger('dev'));
-app.use(logger('common'));
+//app.locals.basedir = app.get('views');
 
 // HTTP Tools
 app.use(bodyParser.json());
@@ -56,12 +50,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 
+// Authentication
+//app.use(session({
+//    secret: process.env.SECRET,
+//    resave: true,
+//    saveUninitialized: true
+//}));
+//app.use(passport.initialize());  
+//app.use(passport.session());
 
-//app.use('/', index);
+// Init list of pages in global variable
+pages.init();
+
 app.use(require('./routes/index'));
 app.use(require('./routes/pages'));
+app.use(require('./routes/login'));
 app.use(require('./routes/editor'));
-app.use(require('./routes/api'));
+app.use('/api', require('./routes/api'));
 
 
 //-----------------------------------------------------------------------------

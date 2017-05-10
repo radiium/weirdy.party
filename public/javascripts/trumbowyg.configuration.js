@@ -1,21 +1,20 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Editor instance and configuration
 $('#editor').trumbowyg({
 
+    // Custom plugins option
+    plugins: {
+        bckImage: {
+            serverPath: '/api/uploadFile'
+        },
+        upload: {
+            serverPath: '/api/uploadFile'
+        },
+    },
+
     // Custom buttons
     btnsDef: {
+
+        // Custom dropdown menu
         image: {
             dropdown: ['insertImage', 'upload', 'base64', 'bckImage', 'noEmbed', 'insertAudio'],
             ico: 'insertImage'
@@ -41,13 +40,11 @@ $('#editor').trumbowyg({
                 console.log('=> Close editor');
                 if(confirm("Quit without saving \nand return to home page?")) {
                     $('#editor').trumbowyg('destroy');
-                    //document.location.href = 'http://localhost:7331';
-                    console.log(window.location.href);
-                    console.log(window.location.origin);
                     window.location = window.location.origin;             
                 }
             } 
         },
+
         // Save page to server
         save: {
             ico: 'save',
@@ -69,8 +66,6 @@ $('#editor').trumbowyg({
                 var bckPos = $('#editor').css("background-position");
                 var bckRep = $('#editor').css("background-repeat");
                 var bckSiz = $('#editor').css("background-size");
-
-                
 
                 if (bckImg !== '') {
                     var bckStyle = 
@@ -105,7 +100,7 @@ $('#editor').trumbowyg({
                     datas.content  = html;
                     datas.pageName = pageName;
                     $.ajax({
-                        url: '/uploadPage',
+                        url: '/api/uploadPage',
                         type: 'POST',
                         data: datas,
                         cache: false,

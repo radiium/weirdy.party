@@ -5,19 +5,11 @@ var path    = require('path');
 
 
 var pages = {};
-   function tm(unix_tm) {
-        var dt = new Date(unix_tm*1000);
-        document.writeln(dt.getHours() + '/' + dt.getMinutes() + '/' + dt.getSeconds() + ' -- ' + dt + '<br>');
-
-    }
 
 //-----------------------------------------------------------------------------
 // Return array of pages
 function getPagesList(dir, callback) {
-    
-    
     fs.readdir(dir, function(err, files){
-
         files = files.map(function (fileName) {
             return {
                 name: fileName,
@@ -33,8 +25,6 @@ function getPagesList(dir, callback) {
 
         return callback(files);
     }); 
-
-
     //return list
 };
 
@@ -46,7 +36,7 @@ pages.init = function() {
     winston.info('=> Init pagesService ');
 
     getPagesList('./views/pages' , function(fls) {
-        winston.info(fls);
+        //winston.info(fls);
 
         global.PAGES         = fls;
         global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
@@ -58,12 +48,6 @@ pages.init = function() {
 // Get last page
 pages.getLastPage = function() {
     return global.PAGES[global.PAGES.length - 1];
-};
-
-//-----------------------------------------------------------------------------
-// Get current page
-pages.getCurrentPage = function() {
-    return global.PAGES_CURRENT;
 };
 
 //-----------------------------------------------------------------------------
@@ -96,12 +80,6 @@ pages.getNextPage = function(page) {
 
 //-----------------------------------------------------------------------------
 // Get current page
-//pages.getPagesList = function() {
-//    return global.PAGES;
-//};
-
-//-----------------------------------------------------------------------------
-// Get current page
 pages.getPagePath = function(page) {
     var pagePath = '';
     for (var i = 0; i < global.PAGES.length; i++) {
@@ -110,20 +88,6 @@ pages.getPagePath = function(page) {
         }
     }
     return pagePath;
-};
-
-//-----------------------------------------------------------------------------
-// Check if page exist
-pages.isPageExist = function(pageToTest) {
-    var isExist = false;
-    for (var i = 0; i < global.PAGES.length; i++) {
-        var page = 'pages/' + global.PAGES[i] + '/page';
-        if (pageToTest === page) {
-            isExist = true;
-            break;
-        }
-    }
-    return isExist;
 };
 
 module.exports = pages;

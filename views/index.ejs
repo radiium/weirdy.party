@@ -26,12 +26,22 @@
 
         <!-- Content -->
         <%if (data.type === 'editor') { %>
+
             <%- include partials/editor.ejs ; %>
+
         <% } else if (data.type === 'page') { %>
+
             <%- include(data.currentPage) %>
+
         <% } else if (data.type === '404') { %>
+
             <%- include partials/pageNotFound.ejs ; %>
-        <% }%>
+
+        <% } /*else if (data.type === 'login') { %>
+
+            <%- include('partials/login.ejs', {message: data.message}); %>
+
+        <% } */%>
 
     </body>
 </html>

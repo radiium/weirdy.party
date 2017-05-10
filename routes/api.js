@@ -1,24 +1,27 @@
 var express = require('express');
-var fs = require('fs');
+var fs      = require('fs');
 var winston = require('winston');
-var multer = require('multer');
+var multer  = require('multer');
 
-var files = require('../utils/filesService');
+//var auth    = require('../utils/authService');
+var files   = require('../utils/filesService');
 
 //-----------------------------------------------------------------------------
 // Configuration
-var router = express.Router();
+var router              = express.Router();
 
-const TMP_DIR = "./public/tmp";
-const PAGES_LOCATION = "./views/pages";
+const TMP_DIR           = "./public/tmp";
+const PAGES_LOCATION    = "./views/pages";
 
-var UPLOAD = multer({ dest: TMP_DIR });
+var UPLOAD              = multer({ dest: TMP_DIR });
 
 
 //-----------------------------------------------------------------------------
 // POST file
 router.post('/uploadFile',
+    //auth.fn,
     UPLOAD.single('fileToUpload'),
+
     function(req, res, next) {
 
         winston.info('=> uploadFile');
@@ -32,9 +35,12 @@ router.post('/uploadFile',
         var imgPath = 'public/images/' + file.originalname;
         var htmlPath = 'http://localhost:7331/images/' + file.originalname;
 
+        winston.info('=> create file');
+
         // Move file to images directory
-        fs.createReadStream(tmpPath)
-            .pipe(fs.createWriteStream(imgPath));
+        fs.createReadStream(tmpPath).pipe(fs.createWriteStream(imgPath));
+
+        winston.info('=> file created');
 
         // Clean temp directory
         files.cleanTmpDir('public/tmp/');
@@ -50,7 +56,9 @@ router.post('/uploadFile',
 
 //-----------------------------------------------------------------------------
 // POST page html
-router.post('/uploadPage', function(req, res, next) {
+router.post('/uploadPage',
+            //auth.fn,
+            function(req, res, next) {
     winston.info('=> upload page');
 
     var pageName = req.body.pageName.replace(/\s+/g, '_');

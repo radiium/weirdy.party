@@ -6,12 +6,7 @@ var files = {};
 //-----------------------------------------------------------------------------
 // Files Utils
 
-// return uniq name
-files.uniqname = function() {
-    //   return '_' + Math.random().toString(36).substr(2, 9);
-    return new Date().getTime() + '_' + Math.random().toString(36).substr(2, 9);
-};
-
+//-----------------------------------------------------------------------------
 // Count number of object in a directory
 files.countObjInDir = function(dir) {
     var count = fs.readdirSync(dir).length;
@@ -19,6 +14,7 @@ files.countObjInDir = function(dir) {
     return count;
 }
 
+//-----------------------------------------------------------------------------
 // Clean objects in a directory
 files.cleanTmpDir = function(TMP_DIR) {
     fs.readdir(TMP_DIR, (err, files) => {
@@ -29,6 +25,7 @@ files.cleanTmpDir = function(TMP_DIR) {
     });
 };
 
+//-----------------------------------------------------------------------------
 // Create directory
 files.createDir = function(dir) {
     if (!fs.existsSync(dir)) {
@@ -41,23 +38,14 @@ files.createDir = function(dir) {
         //winston.info("Create directory : '" + newDir + "'");
     }
 };
+
+//-----------------------------------------------------------------------------
+// Create file in specified directory
 files.createFile = function(file_path, content) {
     fs.writeFile(file_path, content, function(err) {
         if (err) throw err;
         //winston.info('File write completed');
     });
 }
-
-//-----------------------------------------------------------------------------
-// Clean objects in a directory
-files.getPagesList = function(dir) {
-    var filesList = [];
-    var list = fs.readdirSync(dir);
-    list.forEach(file => {
-        filesList.push('/' + file.substr(0, file.lastIndexOf('.')));
-        winston.info(file.substr(0, file.lastIndexOf('.')));
-    });
-    return filesList;
-};
 
 module.exports = files;

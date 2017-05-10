@@ -18,11 +18,10 @@ router.param('page', function(req, res, next, page) {
 
 // Get specified page
 router.get('/pages/:page', function(req, res, next) {
-    winston.info('=> Get /pages/:page     ==> ' +req.page)
+    winston.info('=> Get /pages/:' +req.page)
     
     var pageName = pages.getPagePath(req.page);
     var currentPage = 'pages/' + pageName  + '/page';
-
 
     if (pageName && pageName !== '') {
         var data = {};
