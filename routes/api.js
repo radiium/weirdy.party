@@ -1,7 +1,9 @@
 var express = require('express');
-var fs      = require('fs');
-var winston = require('winston');
 var multer  = require('multer');
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+
+var winston = require('winston');
 
 //var auth    = require('../utils/authService');
 var files   = require('../utils/filesService');
@@ -17,9 +19,9 @@ var UPLOAD              = multer({ dest: TMP_DIR });
 
 
 //-----------------------------------------------------------------------------
-// POST file
+// POST upload file
 router.post('/uploadFile',
-    //auth.fn,
+    require('connect-ensure-login').ensureLoggedIn(),
     UPLOAD.single('fileToUpload'),
 
     function(req, res, next) {
@@ -38,12 +40,12 @@ router.post('/uploadFile',
         winston.info('=> create file');
 
         // Move file to images directory
-        fs.createReadStream(tmpPath).pipe(fs.createWriteStream(imgPath));
-
-        winston.info('=> file created');
+        files.moveFile(tmpPath, imgPath);
 
         // Clean temp directory
         files.cleanTmpDir('public/tmp/');
+
+        winston.info('=> file created');
 
         var data = {
             file: htmlPath,
@@ -55,17 +57,22 @@ router.post('/uploadFile',
 );
 
 //-----------------------------------------------------------------------------
-// POST page html
+// POST upload page html
 router.post('/uploadPage',
-            //auth.fn,
-            function(req, res, next) {
+    require('connect-ensure-login').ensureLoggedIn(),
+    function(req, res, next) {
+
     winston.info('=> upload page');
 
+    // Get page content
     var pageName = req.body.pageName.replace(/\s+/g, '_');
-    var content = req.body.content;
+    var content  = req.body.content;
 
-    //var COUNT     = files.countObjInDir(PAGES_LOCATION);
-    var PAGE_NAME = pageName; //COUNT + '_' + pageName;
+    // Set page variable
+    //var date = moment(testDate).format('MMDDYYYY');
+    //winston.info("date : " + date);
+
+    var PAGE_NAME = pageName; // + '-' + date;
     var PAGE_PATH = PAGES_LOCATION + '/' + PAGE_NAME;
     var PAGE_FILE = PAGE_PATH + '/page.ejs';
 

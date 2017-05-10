@@ -85,13 +85,10 @@ $('#editor').trumbowyg({
                         bckStyle += 'background-size: ' + bckSiz + ';';
                     }
                     bckStyle += '}</style>'
-                    console.log(bckStyle);
                     html += bckStyle
                 }
 
                 html += content + '</div>';
-                console.log('html');
-                console.log(html);
 
                 if (html.length > 0) {
 
@@ -112,6 +109,13 @@ $('#editor').trumbowyg({
                             } else {
                                 
                             }
+
+                            //Logout
+                            $.ajax({
+                                url: '/logout', type: 'GET',
+                                success:  function (data) { console.log(data); },
+                                error: function (err) { console.log(err); }
+                            });
                             index();
                         },
                         error: function () {

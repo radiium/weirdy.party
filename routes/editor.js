@@ -10,7 +10,7 @@ var router = express.Router();
 //-----------------------------------------------------------------------------
 // GET editor.
 router.get('/editor',
-    //auth.fn ,
+    require('connect-ensure-login').ensureLoggedIn(),
     function(req, res, next) {
 
     var data = {};

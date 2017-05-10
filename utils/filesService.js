@@ -31,11 +31,6 @@ files.createDir = function(dir) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
         //winston.info("Create directory : '" + dir + "'");
-    } else {
-        //let newDir = c + "_" + countArticles();
-        //fs.mkdirSync(newDir);
-        //winston.warning("Directory '" + dir + "' already exist!");
-        //winston.info("Create directory : '" + newDir + "'");
     }
 };
 
@@ -46,6 +41,14 @@ files.createFile = function(file_path, content) {
         if (err) throw err;
         //winston.info('File write completed');
     });
-}
+};
+
+//-----------------------------------------------------------------------------
+// Move file in other directory
+files.moveFile = function(tmpPath, newPath) {
+    fs.createReadStream(tmpPath)
+    .pipe(fs.createWriteStream(newPath));
+};
+
 
 module.exports = files;

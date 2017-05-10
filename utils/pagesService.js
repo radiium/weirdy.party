@@ -7,7 +7,7 @@ var path    = require('path');
 var pages = {};
 
 //-----------------------------------------------------------------------------
-// Return array of pages
+// Return array of pages sorted by creation date
 function getPagesList(dir, callback) {
     fs.readdir(dir, function(err, files){
         files = files.map(function (fileName) {
@@ -33,14 +33,16 @@ function getPagesList(dir, callback) {
 // Init pages list as global
 pages.init = function() {
     
-    winston.info('=> Init pagesService ');
+    winston.info('[pagesService] Init');
 
-    getPagesList('./views/pages' , function(fls) {
+    getPagesList('./views/pages' , function(files) {
         //winston.info(fls);
 
-        global.PAGES         = fls;
+        global.PAGES         = files;
         global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
         global.PAGES_INDEX   = global.PAGES.length - 1;
+        
+        winston.info('[pagesService] Pages initialised ');
     });
 };
 
@@ -79,8 +81,8 @@ pages.getNextPage = function(page) {
 };
 
 //-----------------------------------------------------------------------------
-// Get current page
-pages.getPagePath = function(page) {
+// Get page by name
+pages.getPageByName = function(page) {
     var pagePath = '';
     for (var i = 0; i < global.PAGES.length; i++) {
         if (page === global.PAGES[i]) {

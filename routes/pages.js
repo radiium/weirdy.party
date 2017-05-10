@@ -1,8 +1,7 @@
 var express = require('express');
 var winston = require('winston');
+
 var pages   = require('../utils/pagesService');
-var fs      = require('fs');
-var ejs     = require('ejs');
 
 var router  = express.Router();
 
@@ -20,7 +19,7 @@ router.param('page', function(req, res, next, page) {
 router.get('/pages/:page', function(req, res, next) {
     winston.info('=> Get /pages/:' +req.page)
     
-    var pageName = pages.getPagePath(req.page);
+    var pageName = pages.getPageByName(req.page);
     var currentPage = 'pages/' + pageName  + '/page';
 
     if (pageName && pageName !== '') {

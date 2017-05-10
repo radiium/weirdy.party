@@ -1,7 +1,7 @@
 'use strict';
 
 var express       = require('express');
-//var session       = require('express-session');
+var session       = require('express-session');
 var path          = require('path');
 var favicon       = require('serve-favicon');
 var logger        = require('morgan');
@@ -10,58 +10,63 @@ var helmet        = require('helmet');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
 var dotenv        = require('dotenv');
-//var passport      = require('passport');  
+var passport      = require('passport');  
 
 var files         = require('./utils/filesService');
 var pages         = require('./utils/pagesService');
-
 
 //-----------------------------------------------------------------------------
 // Setup environment variables NODE_ENV=development
 if (process.env.NODE_ENV === 'development') {
     winston.info('[SERVER] Running in \'development\' mode');
-    dotenv.config({ path: './environment/dev.env' })
+    dotenv.config({ path: './config/environment/dev.env' })
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
     winston.info('[SERVER] Running in \'production\' mode');
-    dotenv.config({ path: '/var/www/weirdy.party/environment/prod.env' })
+    dotenv.config({ path: '/var/www/weirdy.party/config/environment/prod.env' })
 }
 
 
 //-----------------------------------------------------------------------------
 // Initialization
-winston.info('[SERVER] Configuration');
+winston.info('[SERVER] General Configuration');
 
 var app = express();
 
-// Logger (morgan)
-//app.use(logger('dev'));
-app.use(logger('common'));
 
-// Path setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set('view cache', false);
-app.use(express.static(path.join(__dirname, 'public'), { redirect : false }));
-//app.locals.basedir = app.get('views');
+    // Logger (morgan)
+    app.use(logger('dev'));
+    //app.use(logger('common'));
 
-// HTTP Tools
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(helmet());
+    // Path setup
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'ejs');
+    app.set('view cache', false);
+    app.use(express.static(path.join(__dirname, 'public'), { redirect : false }));
+    //app.locals.basedir = app.get('views');
 
-// Authentication
-//app.use(session({
-//    secret: process.env.SECRET,
-//    resave: true,
-//    saveUninitialized: true
-//}));
-//app.use(passport.initialize());  
-//app.use(passport.session());
+    // Tools
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(cookieParser());
+    app.use(helmet());
 
-// Init list of pages in global variable
-pages.init();
+    // Authentication
+    require('./config/passport');
+    app.use(session({
+        secret: process.env.SECRET,
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(passport.initialize());  
+    app.use(passport.session());
 
+    // Init list of pages in global variable
+    pages.init();
+
+
+//-----------------------------------------------------------------------------
+// Routes Configuration
+winston.info('[SERVER] Routes Configuration');
 app.use(require('./routes/index'));
 app.use(require('./routes/pages'));
 app.use(require('./routes/login'));
