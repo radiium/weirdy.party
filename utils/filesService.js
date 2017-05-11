@@ -1,16 +1,14 @@
-var fs        = require('fs');
-var winston   = require('winston');
+var fs  = require('fs');
+var log = require('winston');
 
 var files = {};
 
-//-----------------------------------------------------------------------------
-// Files Utils
 
 //-----------------------------------------------------------------------------
 // Count number of object in a directory
 files.countObjInDir = function(dir) {
     var count = fs.readdirSync(dir).length;
-    //winston.info("Directory : '" + dir + "' contain : " + count + " object(s)");
+    //log.info("Directory : '" + dir + "' contain : " + count + " object(s)");
     return count;
 }
 
@@ -19,7 +17,7 @@ files.countObjInDir = function(dir) {
 files.cleanTmpDir = function(TMP_DIR) {
     fs.readdir(TMP_DIR, (err, files) => {
         files.forEach(file => {
-            //winston.info("Remove : '" + TMP_DIR + "/" + file + "'");
+            //log.info("Remove : '" + TMP_DIR + "/" + file + "'");
             fs.unlink(TMP_DIR + "/" + file);
         });
     });
@@ -30,7 +28,7 @@ files.cleanTmpDir = function(TMP_DIR) {
 files.createDir = function(dir) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
-        //winston.info("Create directory : '" + dir + "'");
+        //log.info("Create directory : '" + dir + "'");
     }
 };
 
@@ -39,7 +37,7 @@ files.createDir = function(dir) {
 files.createFile = function(file_path, content) {
     fs.writeFile(file_path, content, function(err) {
         if (err) throw err;
-        //winston.info('File write completed');
+        //log.info('File write completed');
     });
 };
 

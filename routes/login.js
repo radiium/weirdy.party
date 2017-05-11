@@ -1,6 +1,6 @@
 var express  = require('express');
 var passport = require('passport');
-var winston  = require('winston');
+var log      = require('winston');
 
 
 //-----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ var router = express.Router();
 
 
 //-----------------------------------------------------------------------------
-// Login
+// GET Login page
 router.get('/login', function (req, res) {
     var data = {};
     data.title = 'login';
@@ -18,18 +18,19 @@ router.get('/login', function (req, res) {
     res.render('index', { data: data });
 });
 
-
+//-----------------------------------------------------------------------------
+// POST Login
 router.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
-        winston.info('LOGIN');
+        log.info('LOGIN');
         res.redirect('editor');
 });
 
-
+//-----------------------------------------------------------------------------
 // Logout endpoint
 router.get('/logout', function (req, res) {
-    winston.info('LOGOUT');
+    log.info('LOGOUT');
     req.logout();
     res.redirect('/');
 });

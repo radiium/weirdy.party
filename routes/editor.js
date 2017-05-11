@@ -1,11 +1,6 @@
-var express   = require('express');
-var winston   = require('winston');
-
-//var auth      = require('../utils/authService');
-
-//-----------------------------------------------------------------------------
-// Configuration
-var router = express.Router();
+var express = require('express');
+var router  = express.Router();
+var log     = require('winston');
 
 //-----------------------------------------------------------------------------
 // GET editor.

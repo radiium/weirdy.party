@@ -5,7 +5,7 @@ var session       = require('express-session');
 var path          = require('path');
 var favicon       = require('serve-favicon');
 var logger        = require('morgan');
-var winston       = require('winston');
+var log           = require('winston');
 var helmet        = require('helmet');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
@@ -18,24 +18,21 @@ var pages         = require('./utils/pagesService');
 //-----------------------------------------------------------------------------
 // Setup environment variables NODE_ENV=development
 if (process.env.NODE_ENV === 'development') {
-    winston.info('[SERVER] Running in \'development\' mode');
-    dotenv.config({ path: './config/environment/dev.env' })
+    log.info('[SERVER] Running in \'development\' mode');
+    dotenv.config({ path: './config/environment/dev.env' });
+    app.use(logger('dev'));
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
-    winston.info('[SERVER] Running in \'production\' mode');
-    dotenv.config({ path: '/var/www/weirdy.party/config/environment/prod.env' })
+    log.info('[SERVER] Running in \'production\' mode');
+    dotenv.config({ path: '/var/www/weirdy.party/config/environment/prod.env' });
+    app.use(logger('common'));
 }
 
 
 //-----------------------------------------------------------------------------
 // Initialization
-winston.info('[SERVER] General Configuration');
+log.info('[SERVER] General Configuration');
 
 var app = express();
-
-
-    // Logger (morgan)
-    app.use(logger('dev'));
-    //app.use(logger('common'));
 
     // Path setup
     app.set('views', path.join(__dirname, 'views'));
@@ -52,10 +49,11 @@ var app = express();
 
     // Authentication
     require('./config/passport');
+    app.set('trust proxy', 1) // trust first proxy
     app.use(session({
         secret: process.env.SECRET,
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
     }));
     app.use(passport.initialize());  
     app.use(passport.session());
@@ -66,7 +64,7 @@ var app = express();
 
 //-----------------------------------------------------------------------------
 // Routes Configuration
-winston.info('[SERVER] Routes Configuration');
+log.info('[SERVER] Routes Configuration');
 app.use(require('./routes/index'));
 app.use(require('./routes/pages'));
 app.use(require('./routes/login'));

@@ -1,10 +1,10 @@
-var fs      = require('fs');
-var winston = require('winston');
-var moment  = require('moment');
-var path    = require('path');
-
+var fs     = require('fs');
+var log    = require('winston');
+var moment = require('moment');
+var path   = require('path');
 
 var pages = {};
+
 
 //-----------------------------------------------------------------------------
 // Return array of pages sorted by creation date
@@ -33,16 +33,16 @@ function getPagesList(dir, callback) {
 // Init pages list as global
 pages.init = function() {
     
-    winston.info('[pagesService] Init');
+    log.info('[pagesService] Init');
 
     getPagesList('./views/pages' , function(files) {
-        //winston.info(fls);
+        //log.info(fls);
 
         global.PAGES         = files;
         global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
         global.PAGES_INDEX   = global.PAGES.length - 1;
         
-        winston.info('[pagesService] Pages initialised ');
+        log.info('[pagesService] Pages initialised ');
     });
 };
 

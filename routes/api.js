@@ -1,16 +1,13 @@
-var express = require('express');
-var multer  = require('multer');
+var express  = require('express');
+var router   = express.Router();
+var multer   = require('multer');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
-
-var winston = require('winston');
-
-//var auth    = require('../utils/authService');
-var files   = require('../utils/filesService');
+var log      = require('winston');
+var files    = require('../utils/filesService');
 
 //-----------------------------------------------------------------------------
 // Configuration
-var router              = express.Router();
 
 const TMP_DIR           = "./public/tmp";
 const PAGES_LOCATION    = "./views/pages";
@@ -26,7 +23,7 @@ router.post('/uploadFile',
 
     function(req, res, next) {
 
-        winston.info('=> uploadFile');
+        log.info('=> uploadFile');
 
         var fileName = req.originalname;
         var tmpName = req.filename;
@@ -37,7 +34,7 @@ router.post('/uploadFile',
         var imgPath = 'public/images/' + file.originalname;
         var htmlPath = 'http://localhost:7331/images/' + file.originalname;
 
-        winston.info('=> create file');
+        log.info('=> create file');
 
         // Move file to images directory
         files.moveFile(tmpPath, imgPath);
@@ -45,7 +42,7 @@ router.post('/uploadFile',
         // Clean temp directory
         files.cleanTmpDir('public/tmp/');
 
-        winston.info('=> file created');
+        log.info('=> file created');
 
         var data = {
             file: htmlPath,
@@ -62,7 +59,7 @@ router.post('/uploadPage',
     require('connect-ensure-login').ensureLoggedIn(),
     function(req, res, next) {
 
-    winston.info('=> upload page');
+    log.info('=> upload page');
 
     // Get page content
     var pageName = req.body.pageName.replace(/\s+/g, '_');
@@ -70,7 +67,7 @@ router.post('/uploadPage',
 
     // Set page variable
     //var date = moment(testDate).format('MMDDYYYY');
-    //winston.info("date : " + date);
+    //log.info("date : " + date);
 
     var PAGE_NAME = pageName; // + '-' + date;
     var PAGE_PATH = PAGES_LOCATION + '/' + PAGE_NAME;

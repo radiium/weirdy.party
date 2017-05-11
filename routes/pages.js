@@ -1,23 +1,23 @@
 var express = require('express');
-var winston = require('winston');
-
+var router  = express.Router();
+var log     = require('winston');
 var pages   = require('../utils/pagesService');
 
-var router  = express.Router();
 
 //-----------------------------------------------------------------------------
 // Handle page param
 router.param('page', function(req, res, next, page) {
-    winston.info('=> Param page');
+    log.info('=> Param page');
     if (page) {
         req.page = page;
     }
     next(); 
 });
 
+//-----------------------------------------------------------------------------
 // Get specified page
 router.get('/pages/:page', function(req, res, next) {
-    winston.info('=> Get /pages/:' +req.page)
+    log.info('=> Get /pages/:' +req.page)
     
     var pageName = pages.getPageByName(req.page);
     var currentPage = 'pages/' + pageName  + '/page';
@@ -50,14 +50,6 @@ router.get('/pages/:page', function(req, res, next) {
     }
 });
 
-router.get('/404', function(req, res) {
-    winston.info('=> Get 404');
 
-    var data = {};
-    data.title = '404';
-    data.type  = '404';
-
-    res.render('index', {data: data});
-});
 
 module.exports = router;
