@@ -32,7 +32,7 @@ router.post('/uploadFile',
         var file = req.file;
         var tmpPath = file.path
         var imgPath = 'public/images/' + file.originalname;
-        var htmlPath = 'http://localhost:7331/images/' + file.originalname;
+        var htmlPath = '/images/' + file.originalname;
 
         log.info('=> create file');
 
