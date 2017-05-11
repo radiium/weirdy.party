@@ -15,6 +15,8 @@ var passport      = require('passport');
 var files         = require('./utils/filesService');
 var pages         = require('./utils/pagesService');
 
+var app = express();
+
 //-----------------------------------------------------------------------------
 // Setup environment variables NODE_ENV=development
 if (process.env.NODE_ENV === 'development') {
@@ -32,7 +34,6 @@ if (process.env.NODE_ENV === 'development') {
 // Initialization
 log.info('[SERVER] General Configuration');
 
-var app = express();
 
     // Path setup
     app.set('views', path.join(__dirname, 'views'));
