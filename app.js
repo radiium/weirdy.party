@@ -40,7 +40,7 @@ log.info('[SERVER] General Configuration');
     app.set('view engine', 'ejs');
     app.set('view cache', false);
     app.use(express.static(path.join(__dirname, 'public'), { redirect : false }));
-    app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
+    //app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
     //app.locals.basedir = app.get('views');
 
     // Tools
