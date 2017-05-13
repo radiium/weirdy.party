@@ -4,6 +4,7 @@ utils.sh
 # Environment variables
 /config/environment/prod.env
 /config/environment/dev.env
+/public/prevs/*
 
 # dependencies
 /node_modules
