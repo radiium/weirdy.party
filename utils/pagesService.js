@@ -35,15 +35,22 @@ function generatPreviews() {
     var pages = global.PAGES;
 
     var pageUrl = '';
+    var options;
+
     if (process.env.NODE_ENV === 'development') {
         pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages/' + pages[i];
+        var options = {
+            phantomPath: '',
+            phantomConfig: {
+                debug: true
+            }
+        }
     } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
         pageUrl = process.env.BASE_URL + '/pages/' + pages[i];
-    }
-
-    var options = {
-        phantomConfig: {
-            debug: true
+        var options = {
+            phantomConfig: {
+                debug: true
+            }
         }
     }
         
@@ -51,7 +58,10 @@ function generatPreviews() {
         var previewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
         log.info(' == previewsPath == ');
         log.info(previewsPath);
-        webshot(pageUrl, previewsPath, options, function(err) {});
+        webshot(pageUrl, previewsPath, options, function(err) {
+            log.info('webshot error');
+            log.info(err);
+        });
     }
 }
 
