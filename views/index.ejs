@@ -41,6 +41,10 @@
 
             <%- include('partials/login.ejs', {message: data.message}); %>
 
+        <% } else if (data.type === 'previews') { %>
+
+            <%- include('partials/previews.ejs', {previews: data.previews}); %>
+
         <% } %>
 
     </body>

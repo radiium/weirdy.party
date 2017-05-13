@@ -1,7 +1,9 @@
-var fs     = require('fs');
-var log    = require('winston');
-var moment = require('moment');
-var path   = require('path');
+var fs      = require('fs');
+var log     = require('winston');
+var moment  = require('moment');
+var path    = require('path');
+var webshot = require('webshot');
+
 
 var pages = {};
 
@@ -28,6 +30,16 @@ function getPagesList(dir, callback) {
     //return list
 };
 
+function generatPreviews() {
+    log.info('[pagesService] generate previews');
+    var pages = global.PAGES;
+    for (var i = 0; i < pages.length; i++) {
+        var pageUrl          = process.env.HOST + ':' + process.env.PORT + '/pages/' + pages[i];
+        var fullPreviewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
+        webshot(pageUrl, fullPreviewsPath, function(err) {});
+    }
+}
+
 
 //-----------------------------------------------------------------------------
 // Init pages list as global
@@ -42,6 +54,8 @@ pages.init = function() {
         global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
         global.PAGES_INDEX   = global.PAGES.length - 1;
         
+        generatPreviews()
+
         log.info('[pagesService] Pages initialised ');
     });
 };

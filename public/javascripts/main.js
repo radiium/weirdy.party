@@ -7,3 +7,7 @@ function openEditor() {
     window.location.href = '/editor';
 }
 
+function preview() {
+    window.location.href = '/previews';
+}
+

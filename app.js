@@ -39,7 +39,8 @@ log.info('[SERVER] General Configuration');
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
     app.set('view cache', false);
-    app.use(express.static(path.join(__dirname, 'public'), { redirect : false }));
+    app.use(express.static(path.join(__dirname, 'public') ));//, { redirect : false }));
+    app.use('/prevs', express.static(path.join(__dirname, 'public/prevs') ));//, { redirect : false }));
     //app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
     //app.locals.basedir = app.get('views');
 
@@ -69,6 +70,7 @@ log.info('[SERVER] General Configuration');
 log.info('[SERVER] Routes Configuration');
 app.use(require('./routes/index'));
 app.use(require('./routes/pages'));
+app.use(require('./routes/previews'));
 app.use(require('./routes/login'));
 app.use(require('./routes/editor'));
 app.use('/api', require('./routes/api'));
