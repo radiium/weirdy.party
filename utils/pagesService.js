@@ -33,8 +33,14 @@ function getPagesList(dir, callback) {
 function generatPreviews() {
     log.info('[pagesService] generate previews');
     var pages = global.PAGES;
+
+    if (process.env.NODE_ENV === 'development') {
+        pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages/' + pages[i];
+    } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
+        pageUrl = process.env.BASE_URL + '/pages/' + pages[i];
+    }
+        
     for (var i = 0; i < pages.length; i++) {
-        var pageUrl          = process.env.HOST + ':' + process.env.PORT + '/pages/' + pages[i];
         var fullPreviewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
         webshot(pageUrl, fullPreviewsPath, function(err) {});
     }

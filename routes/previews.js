@@ -19,7 +19,7 @@ router.get('/previews', function(req, res) {
     for (var i = 0; i < pages.length; i++) {
         //var pageName = pages[i];
 
-        //var pageUrl      = process.env.HOST + ':' + process.env.PORT + '/pages/' + pageName;
+        //var pageUrl      = process.env.BASE_URL + ':' + process.env.PORT + '/pages/' + pageName;
         //var PreviewsPath = '/prevs/' + pageName + '.png';
         //var imgUrl = baseUrl + PreviewsPath
         //log.info(imgUrl);
