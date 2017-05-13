@@ -46,13 +46,11 @@ function generatPreviews(pgs) {
     for (var i = 0; i < pages.length; i++) {
 
         if (process.env.NODE_ENV === 'development') {
-            //pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
+            pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
             //pageUrl = 'http://localhost:7331' + '/pages' + '/' + pages[i];
         } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
-            //pageUrl = process.env.BASE_URL + '/pages' + '/' + pages[i];
+            pageUrl = process.env.BASE_URL + '/pages' + '/' + pages[i];
         }
-        pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
-
 
         var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
         
