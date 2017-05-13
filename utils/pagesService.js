@@ -34,6 +34,7 @@ function generatPreviews() {
     log.info('[pagesService] generate previews');
     var pages = global.PAGES;
 
+    var pageUrl = '';
     if (process.env.NODE_ENV === 'development') {
         pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages/' + pages[i];
     } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
@@ -41,8 +42,10 @@ function generatPreviews() {
     }
         
     for (var i = 0; i < pages.length; i++) {
-        var fullPreviewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
-        webshot(pageUrl, fullPreviewsPath, function(err) {});
+        var previewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
+        log.info(' == previewsPath == ');
+        log.info(previewsPath);
+        webshot(pageUrl, previewsPath, function(err) {});
     }
 }
 
