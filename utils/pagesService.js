@@ -40,12 +40,18 @@ function generatPreviews() {
     } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
         pageUrl = process.env.BASE_URL + '/pages/' + pages[i];
     }
+
+    var options = {
+        phantomConfig: {
+            debug: true
+        }
+    }
         
     for (var i = 0; i < pages.length; i++) {
         var previewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
         log.info(' == previewsPath == ');
         log.info(previewsPath);
-        webshot(pageUrl, previewsPath, function(err) {});
+        webshot(pageUrl, previewsPath, options, function(err) {});
     }
 }
 
