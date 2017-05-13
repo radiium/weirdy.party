@@ -194,7 +194,8 @@
       display: none !important; }
 
 .trumbowyg-dropdown {
-  width: 200px;
+  /*width: 200px;*/
+  width: auto;
   border: 1px solid #ecf0f1;
   padding: 5px 0;
   border-top: none;

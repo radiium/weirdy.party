@@ -48,32 +48,32 @@
         langs: {
             // jshint camelcase:false
             en: {
-                upload: 'Upload',
+                bckTitle: 'Add background image',
                 file: 'File',
                 uploadError: 'Error'
             },
             sk: {
-                upload: 'Nahrať',
+                bckTitle: 'Nahrať',
                 file: 'Súbor',
                 uploadError: 'Chyba'
             },
             fr: {
-                upload: 'Envoi',
+                bckTitle: 'Ajouter image de fond',
                 file: 'Fichier',
                 uploadError: 'Erreur'
             },
             cs: {
-                upload: 'Nahrát obrázek',
+                bckTitle: 'Nahrát obrázek',
                 file: 'Soubor',
                 uploadError: 'Chyba'
             },
             zh_cn: {
-                upload: '上传',
+                bckTitle: '上传',
                 file: '文件',
                 uploadError: '错误'
             },
             ru: {
-                upload: 'Загрузка',
+                bckTitle: 'Загрузка',
                 file: 'Файл',
                 uploadError: 'Ошибка'
             }
@@ -85,15 +85,20 @@
                 init: function (trumbowyg) {
                     trumbowyg.o.plugins.bckImage = $.extend(true, {}, defaultOptions, trumbowyg.o.plugins.bckImage || {});
                     var btnDef = {
+                        title: trumbowyg.lang.bckTitle,
+                        ico: 'insert-image',
                         fn: function () {
                             trumbowyg.saveRange();
 
                             var file,
                                 prefix = trumbowyg.o.prefix;
 
+                            console.log('test:');
+                            console.log(trumbowyg.lang.bckTitle);
+
                             var $modal = trumbowyg.openModalInsert(
                                 // Title
-                                trumbowyg.lang.upload,
+                                trumbowyg.lang.bckTitle,
 
                                 // Fields
                                 {
@@ -154,9 +159,22 @@
                                                 trumbowyg.o.plugins.bckImage.success(data, trumbowyg, $modal, values);
                                             } else {
                                                 if (!!getDeep(data, trumbowyg.o.plugins.bckImage.statusPropertyName.split('.'))) {
+                                                    
                                                     var url = getDeep(data, trumbowyg.o.plugins.bckImage.urlPropertyName.split('.'));
-                                                    trumbowyg.execCmd('insertImage', url);
-                                                    $('img[src="' + url + '"]:not([alt])', trumbowyg.$box).attr('alt', values.alt);
+
+                                                    var attachment = 'fixed';
+                                                    var position   = 'center';
+                                                    var repeat     = 'repeat';
+                                                    var size       = 'auto';
+
+                                                    $('#editor').attr('style',
+                                                    'background-image: url(\'' + data.file + '\') !important;' +
+                                                    'background-attachment: ' + attachment + '  !important;' +
+                                                    'background-position:   ' + position + '  !important;' +
+                                                    'background-repeat:     ' + repeat + '  !important;' +
+                                                    'background-size:       ' + size +  '  !important;'
+                                                    );
+                                                    
                                                     setTimeout(function () {
                                                         trumbowyg.closeModal();
                                                     }, 250);
