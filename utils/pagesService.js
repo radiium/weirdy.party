@@ -36,8 +36,6 @@ function generatPreviews(pgs) {
     var options = {};
 
     options = {
-        //phantomPath: require('phantomjs').path,
-        //phantomPath: 'usr/bin/phantomjs',
         phantomConfig: {
             'debug': true
         }
@@ -47,16 +45,15 @@ function generatPreviews(pgs) {
 
         if (process.env.NODE_ENV === 'development') {
             pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
-            //pageUrl = 'http://localhost:7331' + '/pages' + '/' + pages[i];
         } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
             pageUrl = process.env.BASE_URL + '/pages' + '/' + pages[i];
         }
 
         var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
         
-        log.info(' == previewsPath == ');
-        log.info(pageUrl);
-        log.info(previewsPath);
+        //log.info(' == previewsPath == ');
+        //log.info(pageUrl);
+        //log.info(previewsPath);
 
         webshot(pageUrl, previewsPath, function(err) {
             if (err) {
@@ -80,7 +77,10 @@ pages.init = function() {
     global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
-    generatPreviews(pagesList);
+    var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
+    if (previews.length !== 0 && previews.length !== global.PAGES.length) {
+        generatPreviews(pagesList);
+    }
 
     log.info('[pagesService] Pages initialised ');
 };

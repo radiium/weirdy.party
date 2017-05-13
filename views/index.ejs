@@ -5,25 +5,9 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <!-- jQuery -->
-        <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
-
-        <script type='text/javascript' src="/javascripts/main.js"></script>
-        <script>
-            function prev() {
-                window.location.href = '/pages/' + '<%= data.prevPage %>';
-            }
-            function next() {
-                window.location.href = '/pages/' + '<%= data.nextPage %>';
-            }
-        </script>
     </head>
 
     <body>
-        <!-- Navigation -->
-        <%- include partials/navigation.ejs %>
-
         <!-- Content -->
         <%if (data.type === 'editor') { %>
 
@@ -47,5 +31,18 @@
 
         <% } %>
 
+        <!-- Toolbar and navigation -->
+        <%- include partials/navigation.ejs %>
+        
+        <!-- jQuery -->
+        <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
+        
+        <!-- Custom script -->
+        <script type='text/javascript' src="/javascripts/main.js"></script>
+
+        <% if (data.type === 'previews') { %>
+        <script>$("#toggle").click()</script>
+        <% } %>
+        
     </body>
 </html>
