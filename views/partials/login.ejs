@@ -1,24 +1,30 @@
-<div class="">
-    <div class="">
-    <h1>Login</h1>
+<div id="login">
+    
 
     <% if (message != null) { %>
         <div class=""><%= message %></div>
     <% } %>
 
-    <form action="/login" method="post">
-        <div class="">
-            <label>User name</label>
-            <input type="text" class="" name="username">
-        </div>
+    <div>
+        
 
-        <div class="">
-            <label>Password</label>
-            <input type="password" class="" name="password" />
-        </div>
+        <form id="login-form" action="/login" method="post">
+            <h1>Login</h1>
+            
+            <div class="row">
+                <label>User name</label>
+                <input type="text" class="" name="username">
+            </div>
 
-        <div>
-            <input type="submit" class="" value="Submit" />
-        </div>
-    </form>
+            <div class="row">
+                <label>Password</label>
+                <input type="password" class="" name="password" />
+            </div>
+
+            <div class="login-btn">
+                <input type="submit" class="" value="Submit" />
+            </div>
+        </form>
+    </div>
+
 </div>

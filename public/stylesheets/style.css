@@ -191,6 +191,7 @@ input[type="button"] {
     border-radius: 5px;
 }
 
+/* Previews page */
 .thumb-box {
     margin-top: 15px;
     max-width: 900px;
@@ -203,12 +204,48 @@ input[type="button"] {
 .thumb {
     margin: 10px;
 }
-
 .thumb img {
     width: 200px;
-    height: auto;
+    height: auto;  
+}
 
-    
+/* Login page */
+#login {
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: cornflowerblue;
+}
+#login h1 {
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+#login-form {
+    /*background-color: lightgray;*/
+    margin: 0 auto;
+    width: 250px;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 30px;
+}
+.row {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row input {
+    border: none;
+    padding: 5px;
+}
+.login-btn input{
+    margin-top: 20px;
+    font-size: 1rem;
+    border: none;
+    width: 230px;
+    padding: 5px;
 }
 
 
