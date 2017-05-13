@@ -10,57 +10,61 @@ var pages = {};
 
 //-----------------------------------------------------------------------------
 // Return array of pages sorted by creation date
-function getPagesList(dir, callback) {
-    fs.readdir(dir, function(err, files){
-        files = files.map(function (fileName) {
-            return {
-                name: fileName,
-                time: fs.statSync(dir + '/' + fileName).mtime.getTime()
-            };
-        })
-        .sort(function (a, b) {
-            return a.time - b.time;
-        })
-        .map(function (v) {
-            return v.name;
-        });
+function getPagesList(dir) {
+    var files1 = fs.readdirSync(dir);
 
-        return callback(files);
-    }); 
-    //return list
+    return files1.map(function (fileName) {
+        return {
+            name: fileName,
+            time: fs.statSync(dir + '/' + fileName).mtime.getTime()
+        };
+    })
+    .sort(function (a, b) {
+        return a.time - b.time;
+    })
+    .map(function (v) {
+        return v.name;
+    });
+
 };
 
-function generatPreviews() {
+function generatPreviews(pgs) {
     log.info('[pagesService] generate previews');
-    var pages = global.PAGES;
+    var pages = pgs;
 
     var pageUrl = '';
-    var options;
+    var options = {};
 
-    if (process.env.NODE_ENV === 'development') {
-        pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages/' + pages[i];
-        var options = {
-            phantomPath: '',
-            phantomConfig: {
-                debug: true
-            }
-        }
-    } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
-        pageUrl = process.env.BASE_URL + '/pages/' + pages[i];
-        var options = {
-            phantomConfig: {
-                debug: true
-            }
+    options = {
+        //phantomPath: require('phantomjs').path,
+        //phantomPath: 'usr/bin/phantomjs',
+        phantomConfig: {
+            'debug': true
         }
     }
         
     for (var i = 0; i < pages.length; i++) {
-        var previewsPath = process.env.BASE_DIR + '/public/prevs/' + pages[i] + '.png';
+
+        if (process.env.NODE_ENV === 'development') {
+            //pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
+            //pageUrl = 'http://localhost:7331' + '/pages' + '/' + pages[i];
+        } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
+            //pageUrl = process.env.BASE_URL + '/pages' + '/' + pages[i];
+        }
+        pageUrl = 'http://localhost:7331' + '/pages' + '/' + pages[i];
+
+
+        var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
+        
         log.info(' == previewsPath == ');
+        log.info(pageUrl);
         log.info(previewsPath);
-        webshot(pageUrl, previewsPath, options, function(err) {
-            log.info('webshot error');
-            log.info(err);
+
+        webshot(pageUrl, previewsPath, function(err) {
+            if (err) {
+                log.info('webshot error');
+                log.info(err);
+            }
         });
     }
 }
@@ -72,17 +76,15 @@ pages.init = function() {
     
     log.info('[pagesService] Init');
 
-    getPagesList('./views/pages' , function(files) {
-        //log.info(fls);
+    var pagesList = getPagesList('./views/pages');
 
-        global.PAGES         = files;
-        global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
-        global.PAGES_INDEX   = global.PAGES.length - 1;
-        
-        generatPreviews()
+    global.PAGES         = pagesList;
+    global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
+    global.PAGES_INDEX   = global.PAGES.length - 1;
 
-        log.info('[pagesService] Pages initialised ');
-    });
+    generatPreviews(pagesList);
+
+    log.info('[pagesService] Pages initialised ');
 };
 
 //-----------------------------------------------------------------------------
