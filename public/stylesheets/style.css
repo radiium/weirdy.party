@@ -213,7 +213,8 @@ input[type="button"] {
 }
 
 #infos .infos-header .head-right i {
-    padding: 0.1rem;
+    padding: 0.2rem;
+    border-radius: 2px;
     border: 1px solid white;
 }
 
@@ -325,28 +326,41 @@ div#columns small a {
 
 #login-form {
     margin: 0 auto;
-    width: 250px;
+    max-width: 250px;
     text-align: center;
     border: 1px solid gray;
     padding: 30px;
 }
 
 .row {
-    margin: 10px;
+    text-align: left;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-.row input {
+.row label {
     border: none;
     padding: 5px;
+    width: 150px;
+}
+
+.row input {
+    font-size: 1rem;
+    border: none;
+    padding: 5px;
+    width: 150px;
+}
+
+.login-btn {
+    text-align: center;
 }
 
 .login-btn input{
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 1rem;
     border: none;
-    width: 230px;
+    width: 160px;
     padding: 5px;
 }
