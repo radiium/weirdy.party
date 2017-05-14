@@ -18,7 +18,10 @@ body{
 }
 
 *:focus {
-    outline: none;
+    outline: 0 none;
+}
+input::-moz-focus-inner { 
+  border: 0; 
 }
 
 /************************
@@ -278,8 +281,19 @@ div#columns:hover figure:not(:hover) {
 */
 
 @media screen and (max-width: 750px) { 
-  #columns { column-gap: 0px; }
-  #columns figure { width: 100%; }
+    #columns {
+        column-gap: 0px;
+
+        column-width: 320px;
+        width: 90%;
+        margin: 0;
+        margin-bottom: 50px;
+    }
+    #columns figure {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
 }
 
 /***********************
@@ -326,16 +340,3 @@ div#columns:hover figure:not(:hover) {
     width: 230px;
     padding: 5px;
 }
-
-/***********************
-    Background color
-***********************/
-.bckColor {
-    background-color: cornflowerblue;
-    position: absolute;
-    width: 100%;
-    height: auto;
-    z-index: 1;
-}
-
-
