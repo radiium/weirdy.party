@@ -6,7 +6,6 @@ html{
     margin: 0;
     width:100%;
     height:auto;
-    /*background:black;*/
 }
 
 body{
@@ -60,13 +59,14 @@ input[type="button"] {
     z-index: 999999;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap-reverse;
     position: fixed;
     left: 10px;
     bottom: 10px;
 }
 
 #toolbar {
+    margin-top:5px;
     display: flex;
     flex-direction: row;
     width: 0; 
@@ -76,8 +76,21 @@ input[type="button"] {
             transition: all ease-in-out 0.2s; 
 }
 
+#navbar {
+    margin-left: 0;
+    margin-top:5px;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 185px;
+    -webkit-transition: all ease-in-out 0.2s;
+       -moz-transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.2s; 
+}
+
 /* Toggle Button */
 #toggle {
+    margin-top:5px;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     width: 50px;
@@ -103,6 +116,18 @@ input[type="button"] {
        -moz-transform: rotate(135deg);
          -o-transform: rotate(135deg);
             transform: rotate(135deg);
+}
+
+@media screen and (max-width: 425px) {
+    #navigation {
+        /*flex-direction: column;*/
+    }
+    /*
+    #navbar {
+        margin-left: 55px;
+        margin-top: 5px;
+    }
+    */
 }
 
 /***********************
@@ -147,7 +172,6 @@ input[type="button"] {
     justify-content: space-between;
     position: fixed;
     margin: 0 auto;
-    /*top: calc(50% - 150px);*/
     top: -300px;
     left: calc(50% - 160px);
     background-color: rgba(20, 20, 20, 0.9);
@@ -166,7 +190,6 @@ input[type="button"] {
 }
 
 .infos-head-foot {
-    
 }
 
 #infos .infos-header {
@@ -191,7 +214,6 @@ input[type="button"] {
 
 #infos .infos-header .head-right i {
     padding: 0.1rem;
-    /*border-radius: 0.9rem;*/
     border: 1px solid white;
 }
 
@@ -227,9 +249,6 @@ input[type="button"] {
 }
 
 div#columns figure {
-    /*background: #fefefe;
-    border: 2px solid #fcfcfc;*/
-    /*box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);*/
     margin: 0 2px 15px;
     padding: 15px;
     padding-bottom: 10px;
@@ -241,8 +260,6 @@ div#columns figure {
 div#columns figure img {
     background: #fefefe;
 	width: 100%; height: auto;
-	/*border-bottom: 1px solid #ccc;
-	padding-bottom: 15px;*/
 	margin-bottom: 5px;
 }
 
@@ -274,16 +291,9 @@ div#columns small a {
   transition: .4s color;
 }
 
-/*
-div#columns:hover figure:not(:hover) {
-	opacity: 0.4;
-}
-*/
-
 @media screen and (max-width: 750px) { 
     #columns {
         column-gap: 0px;
-
         column-width: 320px;
         width: 90%;
         margin: 0;
