@@ -73,6 +73,9 @@ pages.init = function() {
 
     var pagesList = getPagesList('./views/pages');
 
+    log.info('pagesList : ');
+    log.info(pagesList);
+    
     global.PAGES         = pagesList;
     global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
     global.PAGES_INDEX   = global.PAGES.length - 1;

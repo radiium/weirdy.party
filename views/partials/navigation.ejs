@@ -10,11 +10,11 @@
         
         <!-- Open editor Button -->
         <% if (data.type !== 'editor') { %>
-        <input class="toolbar-btn item-btn" type="button" onclick="openEditor()" value="&#xf196;"></input>
+        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = '/editor'" value="&#xf196;"></input>
         <% } %>
 
         <!-- Return to first page Button -->
-        <input class="toolbar-btn item-btn" type="button" onclick="index()" value="&#xf015;"></input>
+        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = window.location.origin;" value="&#xf015;"></input>
     </div>
 
     <!-- Previous page Button -->
@@ -24,7 +24,7 @@
 
     <!-- Grid page Button -->
     <% if (data.type !== 'previews') { %>
-    <input class="nav-btn item-btn" type="button" onclick="preview()" value="&#xf00a;"></input>
+    <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/previews'" value="&#xf00a;"></input>
     <% } %>
 
     <!-- Next page Button -->
