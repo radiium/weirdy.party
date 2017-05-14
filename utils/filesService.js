@@ -3,7 +3,6 @@ var log = require('winston');
 
 var files = {};
 
-
 //-----------------------------------------------------------------------------
 // Count number of object in a directory
 files.countObjInDir = function(dir) {
@@ -15,21 +14,11 @@ files.countObjInDir = function(dir) {
 //-----------------------------------------------------------------------------
 // Clean objects in a directory
 files.cleanTmpDir = function(TMP_DIR) {
-
     var files = fs.readdirSync(TMP_DIR);
     files.forEach(file => {
         //log.info("Remove : '" + TMP_DIR + "/" + file + "'");
         fs.unlinkSync(TMP_DIR + "/" + file);
     });
-
-    /*
-    fs.readdir(TMP_DIR, (err, files) => {
-        files.forEach(file => {
-            //log.info("Remove : '" + TMP_DIR + "/" + file + "'");
-            fs.unlink(TMP_DIR + "/" + file);
-        });
-    });
-    */
 };
 
 //-----------------------------------------------------------------------------
@@ -56,6 +45,5 @@ files.moveFile = function(tmpPath, newPath) {
     fs.createReadStream(tmpPath)
     .pipe(fs.createWriteStream(newPath));
 };
-
 
 module.exports = files;

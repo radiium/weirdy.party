@@ -3,7 +3,6 @@ var router  = express.Router();
 var log     = require('winston');
 var pages   = require('../utils/pagesService');
 
-
 //-----------------------------------------------------------------------------
 // Handle page param
 router.param('page', function(req, res, next, page) {
@@ -17,7 +16,7 @@ router.param('page', function(req, res, next, page) {
 //-----------------------------------------------------------------------------
 // Get specified page
 router.get('/pages/:page', function(req, res, next) {
-    log.info('=> Get /pages/:' +req.page)
+    log.info('=> Get /pages/:' + req.page)
     
     var pageName = pages.getPageByName(req.page);
     var currentPage = 'pages/' + pageName  + '/page';
@@ -49,7 +48,5 @@ router.get('/pages/:page', function(req, res, next) {
         res.redirect('/404');
     }
 });
-
-
 
 module.exports = router;

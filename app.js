@@ -69,6 +69,7 @@ log.info('[SERVER] General Configuration');
             expires: expiryDate
         }
     }));
+    
     app.use(passport.initialize());  
     app.use(passport.session());
 
