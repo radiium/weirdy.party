@@ -16,13 +16,6 @@ function logout() {
     });
 }
 
-function prev() {
-    window.location.href = '/pages/' + '<%= data.prevPage %>';
-}
-function next() {
-    window.location.href = '/pages/' + '<%= data.nextPage %>';
-}
-
 // Togle toolbar button
 $( "#toggle" ).click(function() {
     if ($('#toolbar').css('width') === '185px') {
