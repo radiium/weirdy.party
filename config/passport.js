@@ -29,7 +29,6 @@ passport.use(new Strategy(
 
 // Serialize
 passport.serializeUser(function(user, cb) {
-    log.info(user);
     cb(null, user.id);
 });
 
@@ -40,7 +39,6 @@ passport.deserializeUser(function(id, cb) {
             log.info('deserialize: ' + err);
             return cb(err);
         }
-        log.info('deserialize: ' + user);
         cb(null, user);
     });
 });

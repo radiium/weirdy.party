@@ -40,7 +40,8 @@ $('#editor').trumbowyg({
                 console.log('=> Close editor');
                 if(confirm("Quit without saving \nand return to home page?")) {
                     $('#editor').trumbowyg('destroy');
-                    window.location = window.location.origin;             
+                    logout();
+                    //index();
                 }
             } 
         },
@@ -110,13 +111,8 @@ $('#editor').trumbowyg({
                                 
                             }
 
-                            //Logout
-                            $.ajax({
-                                url: '/logout', type: 'GET',
-                                success:  function (data) { console.log(data); },
-                                error: function (err) { console.log(err); }
-                            });
-                            index();
+                            logout();
+                            //index();
                         },
                         error: function () {
                             trumbowyg.addErrorOnModalField(

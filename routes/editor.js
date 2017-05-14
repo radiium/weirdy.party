@@ -5,7 +5,7 @@ var log     = require('winston');
 //-----------------------------------------------------------------------------
 // GET editor.
 router.get('/editor',
-    require('connect-ensure-login').ensureLoggedIn(),
+    isLoggedIn,
     function(req, res, next) {
 
     var data = {};
@@ -16,3 +16,17 @@ router.get('/editor',
 });
 
 module.exports = router;
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+    log.info('=> isLoggedIn');
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated()) {
+        log.info('Already authenticated');
+        return next();
+    }
+
+    // if they aren't redirect them to the home page
+    res.redirect('/login');
+} 

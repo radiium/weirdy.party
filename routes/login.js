@@ -23,15 +23,25 @@ router.get('/login', function (req, res) {
 router.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
-        log.info('LOGIN');
-        res.redirect('editor');
+        req.session.save((err) => {
+            if (err) {
+                return next(err);
+            }
+            log.info('LOGIN');
+            res.redirect('editor');
+        });
 });
 
 //-----------------------------------------------------------------------------
 // Logout endpoint
 router.get('/logout', function (req, res) {
     log.info('LOGOUT');
+    log.info('user : ' + req.user);
+    log.info(req.account);
+    log.info(req.session);
+    
     req.logout();
+    req.session.destroy();
     res.redirect('/');
 });
 

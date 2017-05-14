@@ -9,7 +9,11 @@ function preview() {
     window.location.href = '/previews';
 }
 function logout() {
-     window.location.href = '/logout';
+     $.ajax({
+        url: '/logout', type: 'GET',
+        success:  function (data) { console.log(data); },
+        error: function (err) { console.log(err); }
+    });
 }
 
 function prev() {

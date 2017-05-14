@@ -18,7 +18,7 @@ var UPLOAD              = multer({ dest: TMP_DIR });
 //-----------------------------------------------------------------------------
 // POST upload file
 router.post('/uploadFile',
-    require('connect-ensure-login').ensureLoggedIn(),
+    isLoggedIn,
     UPLOAD.single('fileToUpload'),
 
     function(req, res, next) {
@@ -56,7 +56,7 @@ router.post('/uploadFile',
 //-----------------------------------------------------------------------------
 // POST upload page html
 router.post('/uploadPage',
-    require('connect-ensure-login').ensureLoggedIn(),
+    isLoggedIn,
     function(req, res, next) {
 
     log.info('=> upload page');
@@ -76,7 +76,21 @@ router.post('/uploadPage',
     files.createDir(PAGE_PATH);
     files.createFile(PAGE_FILE, content);
 
-    res.send(PAGE_FILE);
+    res.send('page created');
 });
 
 module.exports = router;
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+    log.info('=> isLoggedIn');
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated()) {
+        log.info('Already authenticated');
+        return next();
+    }
+
+    // if they aren't redirect them to the home page
+    res.redirect('/login');
+} 

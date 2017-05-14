@@ -53,13 +53,37 @@ log.info('[SERVER] General Configuration');
     // Authentication
     require('./config/passport');
     app.set('trust proxy', 1) // trust first proxy
+
+    var expiryDate = new Date( Date.now() + ((60 * 60 * 1000) * 2) ); // 2 hour
+
     app.use(session({
         secret: process.env.SECRET,
-        resave: true,
-        saveUninitialized: true,
+        name : 'sessionIdTest',
+
+        resave: false,
+        saveUninitialized: false,
+        cookie : {
+            domain: process.env.HOST,
+            httpOnly: true,
+            maxAge: 2419200000,
+            expires: expiryDate
+        }
     }));
     app.use(passport.initialize());  
     app.use(passport.session());
+
+    // Security
+    /*
+    var client        = require('redis').createClient()
+    var limiter       = require('express-limiter')(app, client)
+    limiter({
+        path: '/login',
+        method: 'post',
+        lookup: ['connection.remoteAddress'],
+        // 150 requests per hour 
+        total: 150,
+        expire: 1000 * 60 * 60
+    })*/
 
     // Init list of pages in global variable
     pages.init();
