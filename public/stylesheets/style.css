@@ -8,7 +8,6 @@ html{
     height:auto;
     /*background:black;*/
 }
-
 body{
     padding: 0;
     margin: 0 auto;
@@ -16,11 +15,12 @@ body{
     height: 100%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 /************************
         Pages
 ************************/
 .page-wrap {
-    width: auto;
+    max-width: 900px;
     height: 100%;
     margin: 10px;
     overflow: hidden;
@@ -134,7 +134,8 @@ input[type="button"] {
     left: calc(50% - 160px);
     background-color: rgba(20, 20, 20, 0.9);
     color: white;
-    width: 320px;
+    min-width: 280px;
+    max-width: 400px;
     min-height: 300px;
     -webkit-transition: all ease-in-out 0.2s;
        -moz-transition: all ease-in-out 0.2s;
@@ -205,7 +206,7 @@ input[type="button"] {
     margin: 10px;
 }
 .thumb img {
-    width: 200px;
+    width: 250px;
     height: auto;  
 }
 

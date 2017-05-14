@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <title><%= data.title %></title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Custom css -->
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
          <!-- jQuery -->
         <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
+  
    </head>
 
     <body>
@@ -34,6 +38,7 @@
             <%- include('partials/previews.ejs', {previews: data.previews}); %>
 
         <% } %>
+
 
         <!-- Toolbar and navigation -->
         <%- include partials/navigation.ejs %>

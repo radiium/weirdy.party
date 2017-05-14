@@ -4,6 +4,7 @@ var multer   = require('multer');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var log      = require('winston');
+var pages    = require('../utils/pagesService');
 var files    = require('../utils/filesService');
 
 //-----------------------------------------------------------------------------
@@ -75,6 +76,9 @@ router.post('/uploadPage',
 
     files.createDir(PAGE_PATH);
     files.createFile(PAGE_FILE, content);
+
+    // Re-init list of pages 
+    pages.init();
 
     res.send('page created');
 });
