@@ -28,18 +28,28 @@ function getPagesList(dir) {
 
 };
 
-function generatPreviews(pgs) {
+function generatPreviews(pagesList) {
     log.info('[pagesService] generate previews');
-    var pages = pgs;
-
+    
+    var pages   = pagesList;
     var pageUrl = '';
     var options = {};
 
+    // Webshot options
     options = {
         phantomConfig: {
             'debug': true
-        }
-    }
+        },
+        screenSize: {
+            width: 1024,
+            height: 768
+        },
+        shotSize: {
+            width: 1024,
+            height: 'all'
+        },
+        renderDelay: 2000
+    };
         
     for (var i = 0; i < pages.length; i++) {
 
@@ -55,7 +65,7 @@ function generatPreviews(pgs) {
         //log.info(pageUrl);
         //log.info(previewsPath);
 
-        webshot(pageUrl, previewsPath, function(err) {
+        webshot(pageUrl, previewsPath, options, function(err) {
             if (err) {
                 log.info('webshot error');
                 log.info(err);
@@ -81,7 +91,11 @@ pages.init = function() {
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
-    if (previews.length !== 0 && previews.length !== global.PAGES.length) {
+
+    if (previews === null || previews === undefined
+    ||  previews.length === 0 || previews.length !== global.PAGES.length) {
+       
+        log.info('[pagesService] Generate previews');
         generatPreviews(pagesList);
     }
 
