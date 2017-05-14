@@ -63,7 +63,7 @@ log.info('[SERVER] General Configuration');
         resave: false,
         saveUninitialized: false,
         cookie : {
-            domain: process.env.HOST,
+            //domain: process.env.HOST,
             httpOnly: true,
             maxAge: 2419200000,
             expires: expiryDate

@@ -22,7 +22,7 @@ files.cleanTmpDir = function(TMP_DIR) {
         fs.unlinkSync(TMP_DIR + "/" + file);
     });
 
-/*
+    /*
     fs.readdir(TMP_DIR, (err, files) => {
         files.forEach(file => {
             //log.info("Remove : '" + TMP_DIR + "/" + file + "'");
