@@ -227,6 +227,9 @@ input[type="button"] {
 #infos .infos-content {
     flex: 1;
 }
+#infos .infos-content p a {
+   color: cornflowerblue;
+}
 
 .infos-close {
     background-color: black;
