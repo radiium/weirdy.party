@@ -5,6 +5,7 @@ utils.sh
 /config/environment/prod.env
 /config/environment/dev.env
 /public/prevs/*
+/data
 
 # dependencies
 /node_modules
