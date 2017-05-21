@@ -1,14 +1,19 @@
 # Secret files
 # Deploy script
 utils.sh
+/deploy
+
 # Environment variables
-/config/environment/prod.env
-/config/environment/dev.env
-/public/prevs/*
-/data
+/app/config/environment/prod.env
+/app/config/environment/dev.env
+/app/public/prevs/*
+
+
+# Mongodb
+/data/*
 
 # dependencies
-/node_modules
+/app/node_modules
 
 # IDEs and editors
 /.idea

@@ -1,0 +1,38 @@
+
+<div id="navigation">
+
+    <input id="toggle" class="item-btn" type="button"  value="&#xf067;"></input>
+
+    <!-- Tooglable buttons -->
+    <div id="toolbar">
+        <input id="infos-open" class="toolbar-btn item-btn" type="button"  value="&#xf128;"></input>
+        
+        <!-- Open editor Button -->
+        <% if (data.type !== 'editor') { %>
+        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = '/editor'" value="&#xf196;"></input>
+        <% } %>
+
+        <!-- Return to first page Button -->
+        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = window.location.origin;" value="&#xf015;"></input>
+    </div>
+
+    <div  id="navbar">
+        <!-- Previous page Button -->
+        <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
+        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/pages/' + '<%= data.prevPage %>'" value="&#xf100;"></input>
+        <% } %>
+
+        <!-- Grid page Button -->
+        <% if (data.type !== 'previews') { %>
+        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/previews'" value="&#xf00a;"></input>
+        <% } %>
+
+        <!-- Next page Button -->
+        <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
+        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/pages/' + '<%= data.nextPage %>'" value="&#xf101;"></input>
+        <% } %>
+    </div>
+
+</div>
+
+<style>body { background-color: cornflowerblue; }</style>

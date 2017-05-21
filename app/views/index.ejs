@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title><%= data.title %></title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Custom css -->
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css">
+         <!-- jQuery -->
+        <script type='text/javascript' src="/javascripts/jquery-3.1.1.min.js"></script>
+  
+   </head>
+
+    <body>
+        <!-- Content -->
+        <%if (data.type === 'editor') { %>
+
+            <%- include partials/editor.ejs ; %>
+
+        <% } else if (data.type === 'page') { %>
+
+            <%- include(data.currentPage) %>
+
+        <% } else if (data.type === '404') { %>
+
+            <%- include partials/pageNotFound.ejs ; %>
+
+        <% } else if (data.type === 'login') { %>
+
+            <%- include('partials/login.ejs', {message: data.message}); %>
+
+        <% } else if (data.type === 'previews') { %>
+
+            <%- include('partials/previews.ejs', {previews: data.previews}); %>
+
+        <% } %>
+
+
+        <!-- Toolbar and navigation -->
+        <%- include partials/navigation.ejs %>
+
+        <!-- Information popup -->
+        <%- include partials/infoPopup.ejs %>
+
+        <!-- Custom script -->
+        <script type='text/javascript' src="/javascripts/main.js"></script>
+
+        <% if (data.type === 'previews') { %>
+        <script>
+            $("#toggle").click()
+        </script>
+        <% } %>
+    </body>
+</html>
