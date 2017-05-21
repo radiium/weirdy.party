@@ -4,14 +4,13 @@
 /app/config/environment/prod.env
 /app/config/environment/dev.env
 /app/public/prevs/*
+/app/node_modules
 /scripts/*
 /data/*
 
 
-# Mongodb
 
 # dependencies
-/app/node_modules
 
 # IDEs and editors
 /.idea
