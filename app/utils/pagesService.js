@@ -90,7 +90,7 @@ pages.init = function() {
     global.PAGES_CURRENT = global.PAGES[global.PAGES.length - 1];
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
-    var previews = fs.readdirSync('./public/prevs');//process.env.BASE_DIR + './public/prevs');
+    var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
 
     if (previews === null || previews === undefined
     ||  previews.length === 0 || previews.length !== global.PAGES.length) {

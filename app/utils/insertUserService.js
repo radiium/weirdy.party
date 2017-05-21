@@ -9,7 +9,6 @@ module.exports = function() {
 
         if (user) {
             log.info('User already inserted');
-            log.info(user);
             return;
         } else {
             log.info('User not found, add user');
