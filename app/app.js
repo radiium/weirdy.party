@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(logger('dev'));
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
     log.info('[SERVER] Running in \'production\' mode');
-    dotenv.config({ path: '/var/www/weirdy.party/config/environment/prod.env' });
+    dotenv.config({ path: '/var/www/weirdy.party/app/config/environment/prod.env' });
     app.use(logger('common'));
 }
 
