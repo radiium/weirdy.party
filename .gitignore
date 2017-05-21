@@ -1,17 +1,14 @@
 # Secret files
-# Deploy script
-utils.sh
-run.sh
-/deploy
 
 # Environment variables
 /app/config/environment/prod.env
 /app/config/environment/dev.env
 /app/public/prevs/*
+/scripts/*
+/data/*
 
 
 # Mongodb
-/data/*
 
 # dependencies
 /app/node_modules
@@ -37,7 +34,7 @@ run.sh
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log
+/app/npm-debug.log
 testem.log
 /typings
 
