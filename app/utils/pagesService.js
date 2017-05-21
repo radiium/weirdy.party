@@ -91,7 +91,7 @@ pages.init = function() {
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
     log.info(process.env.BASE_DIR);
-    var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
+    var previews = fs.readdirSync('/app/public/prevs');//process.env.BASE_DIR + '/public/prevs');
 
     if (previews === null || previews === undefined
     ||  previews.length === 0 || previews.length !== global.PAGES.length) {
