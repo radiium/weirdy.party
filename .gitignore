@@ -1,6 +1,7 @@
 # Secret files
 # Deploy script
 utils.sh
+run.sh
 /deploy
 
 # Environment variables
