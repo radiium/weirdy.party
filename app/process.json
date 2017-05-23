@@ -9,8 +9,6 @@
     "env_production" : {
        "NODE_ENV": "production"
     },
-    "out_file": "./weirdy.out.log",
-    "error_file": "./weirdy.error.log",
     "combine_logs": true,
     "autorestart": true
   }]
