@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ./ .
 
 RUN ["npm", "install", "-g", "pm2"]
-CMD ["pm2", "start", "--no-daemon",  "process.json"]
+CMD ["NODE_ENV=production", "pm2", "start", "--no-daemon",  "process.json"]
 
 
 # Install 'oh-my-zsh'
