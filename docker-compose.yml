@@ -1,19 +1,22 @@
-mongo:
-  container_name: weirdy_db
-  image: mongo
-  command: mongod --smallfiles
-  volumes:
-    - ./data:/data/db
-  ports:
-    - "27017:27017"
-web:
-  container_name: weirdy_app
-  build: .
-  command: sh -c 'npm install -g nodemon ; DEBUG=weirdy:* ;  NODE_ENV=development nodemon ./bin/www'
-  ports:
-    - "7331:7331"
-  volumes:
-    - ./app:/app
-  links:
-    - mongo
-  
+version: '2'
+
+services:
+  web:
+    container_name: weirdy_app
+    build: ./app
+    command: sh -c 'DEBUG=weirdy:* NODE_ENV=production node_modules/nodemon/bin/nodemon.js ./bin/www'
+    ports:
+      - "8083:7331"
+    volumes:
+      - ./app:/app
+    links:<
+      - mongo
+    
+  mongo:
+    container_name: weirdy_db
+    image: mongo
+    command: mongod --smallfiles
+    volumes:
+      - ./db:/data/db
+    ports:
+      - "27017:27017"
