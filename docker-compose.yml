@@ -9,7 +9,7 @@ services:
       - "8083:7331"
     volumes:
       - ./app:/app
-    links:<
+    links:
       - mongo
     
   mongo:
