@@ -5,12 +5,12 @@ services:
     container_name: weirdy_app
     build: ./app
     command: sh -c 'DEBUG=weirdy:* NODE_ENV=production node_modules/nodemon/bin/nodemon.js ./bin/www'
-    ports:
-      - "8083:7331"
     volumes:
       - ./app:/app
     links:
       - mongo
+    ports:
+      - "8083:7331"
     
   mongo:
     container_name: weirdy_db

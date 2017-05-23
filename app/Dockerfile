@@ -4,9 +4,6 @@ FROM node:latest
 WORKDIR /app
 COPY ./ .
 
-EXPOSE 7331
-
-
 # Install 'oh-my-zsh'
 #RUN ["apt-get", "update"]
 #RUN ["apt-get", "install", "-y", "zsh"]
