@@ -1,0 +1,18 @@
+{
+  "apps" : [{
+    "name"        : "weirdy.party",
+    "script"      : "./bin/www",
+    "watch"       : true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "out_file": "./weirdy.out.log",
+    "error_file": "./weirdy.error.log",
+    "combine_logs": true,
+    "autorestart": true
+  }]
+}
+

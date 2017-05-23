@@ -4,7 +4,6 @@ services:
   web:
     container_name: weirdy_app
     build: ./app
-    command: sh -c 'DEBUG=weirdy:* NODE_ENV=production node_modules/nodemon/bin/nodemon.js ./bin/www'
     volumes:
       - ./app:/app
     links:

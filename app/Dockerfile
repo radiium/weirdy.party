@@ -4,6 +4,10 @@ FROM node:latest
 WORKDIR /app
 COPY ./ .
 
+RUN ["npm", "install", "-g", "pm2"]
+CMD ["pm2", "start", "--no-daemon",  "processe.json"]
+
+
 # Install 'oh-my-zsh'
 #RUN ["apt-get", "update"]
 #RUN ["apt-get", "install", "-y", "zsh"]
