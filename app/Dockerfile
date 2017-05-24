@@ -1,14 +1,8 @@
 FROM node:latest
-#FROM node:alpine-node
 
 WORKDIR /app
 COPY ./ .
 
+# Install and run pm2
 RUN ["npm", "install", "-g", "pm2"]
-CMD ["NODE_ENV=production", "pm2", "start", "--no-daemon",  "process.json"]
-
-
-# Install 'oh-my-zsh'
-#RUN ["apt-get", "update"]
-#RUN ["apt-get", "install", "-y", "zsh"]
-#RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+CMD ["pm2", "start", "--no-daemon", "process.json", "--env", "production"]
