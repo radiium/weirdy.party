@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 // Module dependencies.
+var log   = require('winston');
 var app   = require('../app');
 var debug = require('debug')('werdy:server');
 var http  = require('http');
@@ -66,3 +67,5 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+
+log.info('[server] localhost:' + port);
