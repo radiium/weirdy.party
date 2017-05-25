@@ -31,4 +31,4 @@ case "$1" in
 esac
 echo "Ciao" >&2
 
-docker save 19885890b442 | bzip2 | pv | ssh  -p 1337 root@vps316332.ovh.net:/home 'bunzip2 | docker load'
+#docker save 19885890b442 | bzip2 | pv | ssh  -p 1337 root@vps316332.ovh.net:/home 'bunzip2 | docker load'
