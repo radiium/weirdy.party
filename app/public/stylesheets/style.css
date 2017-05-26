@@ -6,6 +6,7 @@ html{
     margin: 0;
     width:100%;
     height:auto;
+    background-color: transparent;
 }
 
 body{
@@ -14,6 +15,7 @@ body{
     width: 100%;
     height: 100%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: transparent;
 }
 
 *:focus {
