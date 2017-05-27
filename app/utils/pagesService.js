@@ -32,7 +32,6 @@ function generatPreviews(pagesList) {
     log.info('[pagesService] generate previews');
     
     var pages   = pagesList;
-    var pageUrl = '';
     var options = {};
 
     // Webshot options
@@ -53,12 +52,14 @@ function generatPreviews(pagesList) {
         
     for (var i = 0; i < pages.length; i++) {
 
+        /*
         if (process.env.NODE_ENV === 'development') {
             pageUrl = process.env.BASE_URL + ':' + process.env.PORT + '/pages' + '/' + pages[i];
         } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === undefined) {
-            pageUrl = process.env.BASE_URL + '/pages' + '/' + pages[i];
         }
+        */
 
+        var pageUrl      = process.env.BASE_URL + '/pages' + '/' + pages[i];
         var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
         
         //log.info(' == previewsPath == ');
