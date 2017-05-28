@@ -109,14 +109,28 @@
                                             accept: 'image/*'
                                         }
                                     },
-                                    alt: {
-                                        label: 'description',
-                                        value: trumbowyg.getRangeText()
+                                    size: {
+                                        label: 'Size 100%',
+                                        required: false,
+                                        type: 'checkbox'
+                                    },
+                                    repeat: {
+                                        label: 'Repeat',
+                                        required: false,
+                                        type: 'checkbox'
+                                    },
+                                    scroll: {
+                                        label: 'Scroll',
+                                        required: false,
+                                        type: 'checkbox'
                                     }
                                 },
 
                                 // Callback
                                 function (values) {
+
+                                    console.log(values);
+
                                     var data = new FormData();
                                     data.append(trumbowyg.o.plugins.bckImage.fileFieldName, file);
 
@@ -135,6 +149,27 @@
                                                     })
                                                 )
                                             );
+                                    }
+
+                                    var size = '';
+                                    if (values.size) {
+                                        size ='100%';
+                                    } else {
+                                        size ='auto';
+                                    }
+
+                                    var repeat = '';
+                                    if (values.repeat) {
+                                        repeat = 'repeat';
+                                    } else {
+                                        repeat = 'no-repeat';
+                                    }
+
+                                    var attach = '';
+                                    if (values.scroll) {
+                                        attach = 'scroll';
+                                    } else {
+                                        attach = 'fixed';
                                     }
 
                                     $.ajax({
@@ -162,14 +197,14 @@
                                                     
                                                     var url = getDeep(data, trumbowyg.o.plugins.bckImage.urlPropertyName.split('.'));
 
-                                                    var attachment = 'fixed';
+                                                    //var attachment = 'fixed';
                                                     var position   = 'center';
-                                                    var repeat     = 'repeat';
-                                                    var size       = 'auto';
+                                                    //var repeat     = 'repeat';
+                                                    //var size       = 'auto';
 
                                                     $('#editor').attr('style',
                                                     'background-image: url(\'' + data.file + '\') !important;' +
-                                                    'background-attachment: ' + attachment + '  !important;' +
+                                                    'background-attachment: ' + attach + '  !important;' +
                                                     'background-position:   ' + position + '  !important;' +
                                                     'background-repeat:     ' + repeat + '  !important;' +
                                                     'background-size:       ' + size +  '  !important;'
