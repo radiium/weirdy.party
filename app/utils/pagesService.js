@@ -36,7 +36,7 @@ function generatPreviews(pagesList) {
 
     // Webshot options
     options = {
-        phantomPath: "/usr/local/bin/phantomjs",
+        
         phantomConfig: {
             'debug': true
         },
@@ -50,6 +50,10 @@ function generatPreviews(pagesList) {
         },
         renderDelay: 2000
     };
+
+    if (process.env.NODE_ENV === 'development') {
+        options.phantomPath = "/usr/local/bin/phantomjs";
+    }
         
     for (var i = 0; i < pages.length; i++) {
 
