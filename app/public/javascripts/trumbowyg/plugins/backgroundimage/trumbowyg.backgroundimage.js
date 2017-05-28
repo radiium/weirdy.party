@@ -90,11 +90,8 @@
                         fn: function () {
                             trumbowyg.saveRange();
 
-                            var file,
-                                prefix = trumbowyg.o.prefix;
-
-                            console.log('test:');
-                            console.log(trumbowyg.lang.bckTitle);
+                            var file;
+                            var prefix = trumbowyg.o.prefix;
 
                             var $modal = trumbowyg.openModalInsert(
                                 // Title
@@ -128,8 +125,6 @@
 
                                 // Callback
                                 function (values) {
-
-                                    console.log(values);
 
                                     var data = new FormData();
                                     data.append(trumbowyg.o.plugins.bckImage.fileFieldName, file);

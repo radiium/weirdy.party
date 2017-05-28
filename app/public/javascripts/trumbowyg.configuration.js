@@ -9,6 +9,9 @@ $('#editor').trumbowyg({
         upload: {
             serverPath: '/api/uploadFile'
         },
+        savePage: {
+            serverPath: '/api/uploadPage'
+        },
     },
 
     // Custom buttons
@@ -40,82 +43,9 @@ $('#editor').trumbowyg({
                 console.log('=> Close editor');
                 if(confirm("Quit without saving \nand return to home page?")) {
                     $('#editor').trumbowyg('destroy');
-                    //logout();
                     window.location.href = '/logout';
                 }
             } 
-        },
-
-        // Save page to server
-        save: {
-            ico: 'save',
-            fn: function() {
-
-                console.log('=> Save page');
-
-                var pageName = prompt("Please enter your page name", "");
-                if (pageName === "") {
-                    var date = new Date().getTime();
-                    pageName = 'page-' + date;
-                }
-
-                var content = $('#editor').trumbowyg('html');
-                var html    = '<div class=\'page-wrap\'>';
-
-                var bckImg = $('#editor').css("background-image");
-                var bckAtt = $('#editor').css("background-attachment");
-                var bckPos = $('#editor').css("background-position");
-                var bckRep = $('#editor').css("background-repeat");
-                var bckSiz = $('#editor').css("background-size");
-
-                if (bckImg !== '') {
-                    var bckStyle = 
-                        '<style id=\'bckgrdImgStyle\'>body {' +
-                        'background-image: ' + bckImg + ' !important;'
-
-                    if (bckAtt !== '') {
-                        bckStyle += 'background-attachment: ' + bckAtt + ';';
-                    }
-                    if (bckPos !== '') {
-                        bckStyle += 'background-position: ' + bckPos + ';';
-                    }
-                    if (bckRep !== '') {
-                        bckStyle += 'background-repeat: ' + bckRep + ';';
-                    }
-                    if (bckSiz !== '') {
-                        bckStyle += 'background-size: ' + bckSiz + ';';
-                    }
-                    bckStyle += '}</style>'
-                    html += bckStyle
-                }
-
-                html += content + '</div>';
-
-                if (html.length > 0) {
-
-                    var datas = {};
-
-                    datas.content  = html;
-                    datas.pageName = pageName;
-                    $.ajax({
-                        url: '/api/uploadPage',
-                        type: 'POST',
-                        data: datas,
-                        cache: false,
-                        dataType: 'json',
-
-                        success:  function (data) {
-                            window.location.href = '/logout';
-                        },
-                        error: function () {
-                            trumbowyg.addErrorOnModalField(
-                                $('input[type=text]', $modal),
-                                trumbowyg.lang.noembedError
-                            );
-                            }
-                        });
-                }
-            }
         },
     },
 
@@ -123,7 +53,7 @@ $('#editor').trumbowyg({
     btns: [
         ['viewHTML'], ['formatting'], 'btnGrp-design', ['link'], ['image'], 'btnGrp-justify',
         'btnGrp-lists', ['foreColor', 'backColor'], ['preformatted'], ['horizontalRule'],
-        ['clear', 'closed', 'save'], ['fullscreen']
+        ['clear', 'closed', 'savePage'], ['fullscreen']
     ],
 
     // Miscellanous

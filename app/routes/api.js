@@ -67,6 +67,7 @@ router.post('/uploadPage',
     var pageName = req.body.pageName.replace(/\s+/g, '_');
     var content  = req.body.content;
 
+
     // Set page variable
     //var date = moment(testDate).format('MMDDYYYY');
     //log.info("date : " + date);
@@ -81,7 +82,12 @@ router.post('/uploadPage',
     // Re-init list of pages 
     pages.init();
 
-    res.send('page created');
+    var data = {
+        message: 'Page ' + PAGE_NAME + ' created',
+        success: true
+    };
+
+    res.send(data);
 });
 
 module.exports = router;
