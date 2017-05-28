@@ -31,7 +31,7 @@ input::-moz-focus-inner {
 .page-wrap {
     max-width: 900px;
     height: 100%;
-    margin: 10px;
+    margin: 10px auto;
     overflow: hidden;
 }
 
