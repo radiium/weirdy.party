@@ -36,6 +36,7 @@ function generatPreviews(pagesList) {
 
     // Webshot options
     options = {
+        phantomPath: "/usr/local/bin/phantomjs",
         phantomConfig: {
             'debug': true
         },

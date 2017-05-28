@@ -70,5 +70,4 @@ $('#editor').trumbowyg({
 
 $('#editor').trumbowyg().on('tbwclose', function() {
     //console.log('tbwclose!');
-    
 });

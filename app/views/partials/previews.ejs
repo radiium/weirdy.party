@@ -3,17 +3,17 @@
     <% for(var i=0; i < previews.length; i++) {%>
 
     <figure>
-
-         <!-- Thumbnail -->
         <a href="/pages/<%- previews[i] %>">
+        
+        <!-- Thumbnail -->
         <img src="/prevs/<%- previews[i] %>.png" alt="Page <%- previews[i] %>">
-        </a>
 
         <!-- Caption -->
         <figcaption>
-        <h3><a href="/pages/<%- previews[i] %>">/<%- previews[i] %></a></h3>
+        <h3>/<%- previews[i] %></h3>
         </figcaption>
 
+        </a>
     </figure>
 
     <% } %>

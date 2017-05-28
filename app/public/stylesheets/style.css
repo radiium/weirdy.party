@@ -258,15 +258,17 @@ input[type="button"] {
 }
 
 div#columns figure {
+    position: relative;
     margin: 0 2px 15px;
     padding: 15px;
     padding-bottom: 10px;
-    transition: opacity .4s ease-in-out;
+    transition: all .4s ease-in-out;
     display: inline-block;
     column-break-inside: avoid;
 }
 
 div#columns figure img {
+    transition: all .4s ease-in-out;
     background: #fefefe;
 	width: 100%; height: auto;
 	margin-bottom: 5px;
@@ -274,17 +276,39 @@ div#columns figure img {
 
 div#columns figure figcaption {
     font-size: .9rem;
-    color: #444;
-    line-height: 1.5;
+    line-height: 1.5rem;
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+    width: 60%;
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    text-align: center;
+    transition: all ease-in-out 0.3s;
+    opacity: 0.7;
+    z-index: 999;
+}
+div#columns:hover figure:not(:hover) {
+    /*opacity: 0.5;*/
+}
+div#columns figure:hover img {
+    /*border-radius:  0 50px 0 0;*/
+}
+div#columns figure:hover figcaption {
+    opacity: 1;
+    width: 70%;
 }
 
 div#columns figure figcaption h3 {
-    margin-top: 0;
+    /*margin-top: 0;*/
 }
 
 div#columns figure figcaption h3 a{
+    /*
     color: black;
+    */
     text-decoration: none;
+    color: white;
 }
 
 div#columns small { 
