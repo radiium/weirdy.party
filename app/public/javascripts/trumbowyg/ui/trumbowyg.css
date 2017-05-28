@@ -207,7 +207,9 @@
   border-top: none;
   background: #FFF;
   margin-left: -1px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px; }
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px;
+  height: 200px !important;
+  overflow: scroll;}
   .trumbowyg-dropdown button {
     display: block;
     width: 100%;
