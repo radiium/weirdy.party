@@ -3,7 +3,7 @@
     "name": "weirdy.party",
     "script": "./bin/www",
     "watch": true,
-    "ignore_watch" : ["node_modules", "public"],
+    "ignore_watch" : ["node_modules", "public", "README.MD", "package.json", "process.json", "Dockerfile", "config/environment"],
     "watch_options": {
       "followSymlinks": false
     },
