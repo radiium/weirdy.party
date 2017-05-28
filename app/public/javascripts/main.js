@@ -29,20 +29,26 @@ $( "#toggle" ).click(function() {
         }
     }
 });
+
+// Infos popup
+
 // Open close button from toolbar 
-$( "#infos-open" ).click(function() {
+var isOpen;
+$( "#infos-open" ).click(function(event) {
+    event.stopPropagation();
     if ($('#infos').css('top') === '-300px') {
         $('#infos').css('top', '50px');
+        isOpen = true;
     } else {
         $('#infos').css('top', '-300px');
-    }
+         isOpen = false;
+   }
 });
 // Close button on infos popup
-$( "#infos-close" ).click(function() {
-    if ($('#infos').css('top') === '-300px') {
-        $('#infos').css('top', '50px');
-    } else {
-        $('#infos').css('top', '-300px');
-    }
+$( "#infos-close" ).click(function(event) {
+    $( "#infos-open" ).click();
 });
-
+// Close on click outside popup
+$( "html" ).click(function() {
+    if (isOpen) { $( "#infos-open" ).click();}
+});
