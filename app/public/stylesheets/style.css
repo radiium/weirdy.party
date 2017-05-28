@@ -28,6 +28,9 @@ input::-moz-focus-inner {
 /************************
         Pages
 ************************/
+.page-container {
+    margin: 10px;
+}
 .page-wrap {
     max-width: 900px;
     height: 100%;

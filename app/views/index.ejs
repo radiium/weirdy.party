@@ -23,7 +23,9 @@
 
         <% } else if (data.type === 'page') { %>
 
-            <%- include(data.currentPage) %>
+            <div class="page-container">
+                <%- include(data.currentPage) %>
+            </div>
 
         <% } else if (data.type === '404') { %>
 
