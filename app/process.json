@@ -3,6 +3,10 @@
     "name": "weirdy.party",
     "script": "./bin/www",
     "watch": true,
+    "ignore_watch" : ["node_modules", "public"],
+    "watch_options": {
+      "followSymlinks": false
+    },
     "env": {
       "NODE_ENV": "development"
     },
@@ -10,7 +14,7 @@
        "NODE_ENV": "production"
     },
     "combine_logs": true,
-    "autorestart": true
+    "autorestart": false
   }]
 }
 
