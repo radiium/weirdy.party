@@ -47,6 +47,7 @@ app.set('view engine', 'ejs');
 app.set('view cache', false);
 app.use(express.static(path.join(__dirname, 'public') ));//, { redirect : false }));
 app.use('/prevs', express.static(path.join(__dirname, 'public/prevs') ));//, { redirect : false }));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 //app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
 //app.locals.basedir = app.get('views');
 
