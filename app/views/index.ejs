@@ -17,29 +17,32 @@
 
     <body>
         <!-- Content -->
-        <%if (data.type === 'editor') { %>
 
-            <%- include partials/editor.ejs ; %>
+        <div id="content">
+            <%if (data.type === 'editor') { %>
 
-        <% } else if (data.type === 'page') { %>
+                <%- include partials/editor.ejs ; %>
 
-            <div class="page-container">
-                <%- include(data.currentPage) %>
-            </div>
+            <% } else if (data.type === 'page') { %>
 
-        <% } else if (data.type === '404') { %>
+                <div class="page-container">
+                    <%- include(data.currentPage) %>
+                </div>
 
-            <%- include partials/pageNotFound.ejs ; %>
+            <% } else if (data.type === '404') { %>
 
-        <% } else if (data.type === 'login') { %>
+                <%- include partials/pageNotFound.ejs ; %>
 
-            <%- include('partials/login.ejs', {message: data.message}); %>
+            <% } else if (data.type === 'login') { %>
 
-        <% } else if (data.type === 'previews') { %>
+                <%- include('partials/login.ejs', {message: data.message}); %>
 
-            <%- include('partials/previews.ejs', {previews: data.previews}); %>
+            <% } else if (data.type === 'previews') { %>
 
-        <% } %>
+                <%- include('partials/previews.ejs', {previews: data.previews}); %>
+
+            <% } %>
+        </div>
 
 
         <!-- Toolbar and navigation -->

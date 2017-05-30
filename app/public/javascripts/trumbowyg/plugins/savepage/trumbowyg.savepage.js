@@ -31,7 +31,7 @@
 
         // If background-image
         if (bckImg !== '') {
-            bckStyle = '<style id=\'bckgrdImgStyle\'>body {background-image: ' + bckImg + ' !important;'
+            bckStyle = '<style id=\'bckgrdImgStyle\'>#content {background-image: ' + bckImg + ' !important;'
            
             // If other attributes
             if (bckAtt !== '') { bckStyle += 'background-attachment: ' + bckAtt + ';'; }

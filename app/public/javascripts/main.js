@@ -32,23 +32,35 @@ $( "#toggle" ).click(function() {
 
 // Infos popup
 
-// Open close button from toolbar 
-var isOpen;
-$( "#infos-open" ).click(function(event) {
-    event.stopPropagation();
-    if ($('#infos').css('top') === '-300px') {
+function closePopup() {
+    if ($('#infos').css('top') === '-400px') {
         $('#infos').css('top', '50px');
+        $( "#content" ).addClass( "blur" );
         isOpen = true;
     } else {
-        $('#infos').css('top', '-300px');
+        $('#infos').css('top', '-400px');
+        $( "#content" ).removeClass( "blur" );
          isOpen = false;
    }
+}
+
+// Open close button from toolbar 
+var isOpen;
+$( "#infos-open" ).click(function() {
+    closePopup();
 });
+
 // Close button on infos popup
-$( "#infos-close" ).click(function(event) {
-    $( "#infos-open" ).click();
+$( "#infos-close" ).click(function() {
+    closePopup();
 });
+
 // Close on click outside popup
 $( "html" ).click(function() {
-    if (isOpen) { $( "#infos-open" ).click();}
+    if (isOpen) { closePopup(); }
 });
+
+// Prevent click on popup
+$( "#infos" ).click(function(event) {
+    event.stopPropagation();
+})
