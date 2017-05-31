@@ -53,9 +53,9 @@ function generatPreviews(pagesList) {
 
     if (process.env.NODE_ENV === 'development') {
         options.phantomPath = "/usr/local/bin/phantomjs";
-    } else {
+    } /*else {
         options.phantomPath = "/app/node_modules/phantomjs-prebuilt/bin/phantomjs";
-    }
+    }*/
  
     for (var i = 0; i < pages.length; i++) {
 
@@ -69,9 +69,9 @@ function generatPreviews(pagesList) {
         var pageUrl      = process.env.BASE_URL + '/pages' + '/' + pages[i];
         var previewsPath = process.env.BASE_DIR + './public/prevs' + '/' + pages[i] + '.png';
         
-        //log.info(' == previewsPath == ');
-        //log.info(pageUrl);
-        //log.info(previewsPath);
+        log.info(' == previewsPath == ');
+        log.info(pageUrl);
+        log.info(previewsPath);
 
         webshot(pageUrl, previewsPath, options, function(err) {
             if (err) {
