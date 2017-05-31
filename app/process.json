@@ -1,9 +1,17 @@
 {
   "apps": [{
     "name": "weirdy.party",
-    "script": "./bin/www",
+    "script": "/app/bin/www",
     "watch": true,
-    "ignore_watch" : ["node_modules", "public", "README.MD", "package.json", "process.json", "Dockerfile", "config/environment"],
+    "ignore_watch" : [
+        "/app/node_modules",
+        "/app/public",
+        "/app/README.MD",
+        "/app/package.json",
+        "/app/process.json",
+        "/app/Dockerfile",
+        "/app/config/environment"
+    ],
     "watch_options": {
       "followSymlinks": false
     },

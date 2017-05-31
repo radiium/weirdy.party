@@ -53,8 +53,12 @@ function generatPreviews(pagesList) {
 
     if (process.env.NODE_ENV === 'development') {
         options.phantomPath = "/usr/local/bin/phantomjs";
+    } /*else {
+        options.phantomPath = "/app/node_modules/phantomjs-prebuilt/bin/phantomjs";
     }
-        
+    options.phantomPath = require('phantomjs').path;
+    */
+ 
     for (var i = 0; i < pages.length; i++) {
 
         /*
@@ -65,7 +69,7 @@ function generatPreviews(pagesList) {
         */
 
         var pageUrl      = process.env.BASE_URL + '/pages' + '/' + pages[i];
-        var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
+        var previewsPath = process.env.BASE_DIR + './public/prevs' + '/' + pages[i] + '.png';
         
         //log.info(' == previewsPath == ');
         //log.info(pageUrl);
@@ -75,6 +79,9 @@ function generatPreviews(pagesList) {
             if (err) {
                 log.info('webshot error');
                 log.info(err);
+                global.hasPreviews = false;
+            } else {
+                global.hasPreviews = true;
             }
         });
     }
@@ -97,7 +104,7 @@ pages.init = function() {
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
-
+    global.hasPreviews = false;
     if (previews === null || previews === undefined
     ||  previews.length === 0 || previews.length !== global.PAGES.length) {
        
