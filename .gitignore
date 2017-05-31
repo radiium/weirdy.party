@@ -6,7 +6,7 @@
 #/app/public/prevs/*
 /app/node_modules
 /scripts/*
-/db/*
+#/db/*
 
 
 
