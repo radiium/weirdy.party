@@ -2,6 +2,7 @@
 
 var express       = require('express');
 var session       = require('express-session');
+var cookieSession = require('cookie-session')
 var path          = require('path');
 var favicon       = require('serve-favicon');
 var logger        = require('morgan');
@@ -47,7 +48,7 @@ app.set('view engine', 'ejs');
 app.set('view cache', false);
 app.use(express.static(path.join(__dirname, 'public') ));//, { redirect : false }));
 app.use('/prevs', express.static(path.join(__dirname, 'public/prevs') ));//, { redirect : false }));
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join('./public/favicon.ico')))
 //app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
 //app.locals.basedir = app.get('views');
 
@@ -66,7 +67,15 @@ require('./config/passport');
 app.set('trust proxy', 1) // trust first proxy
 
 var expiryDate = new Date( Date.now() + ((60 * 60 * 1000) * 2) ); // 2 hour
+/*
+app.use(cookieSession({
+  name: 'supaSession',
+  secret: process.env.SECRET,
 
+  // Cookie Options
+  maxAge: (60 * 60 * 1000) * 2 // 2 hours
+}))
+*/
 app.use(session({
     secret: process.env.SECRET,
     name : 'sessionIdTest',
