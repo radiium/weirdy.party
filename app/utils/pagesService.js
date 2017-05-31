@@ -53,11 +53,9 @@ function generatPreviews(pagesList) {
 
     if (process.env.NODE_ENV === 'development') {
         options.phantomPath = "/usr/local/bin/phantomjs";
-    } /*else {
+    } else {
         options.phantomPath = "/app/node_modules/phantomjs-prebuilt/bin/phantomjs";
     }
-    options.phantomPath = require('phantomjs').path;
-    */
  
     for (var i = 0; i < pages.length; i++) {
 
