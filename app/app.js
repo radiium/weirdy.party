@@ -92,23 +92,29 @@ app.use(session({
 
 //-----------------------------------------------------------------------------
 // MongoDB
-mongoose.Promise = global.Promise
-mongoose.connect(process.env.DB_URL, function(err) {
+mongoose.Promise = global.Promise;
+var options = { server: { socketOptions: { keepAlive: 1 } } };
+mongoose.connect(process.env.DB_URL, options, function(err) {
     if (err) {
         log.info(err);
     } else {
         log.info('Connected to mongodb');  
     }
 });
-var conn = mongoose.connection;
-conn.once('open', function (err) {
+// Check opened connection
+mongoose.connection.on('open', function (err) {
     if (err) { throw err; }
     console.log("Mongoose connection opened on process " + process.pid);
 });
+// Error handler
+mongoose.connection.on('error', function (err) {
+  console.log(err);
+});
 
-// Insert the user if not already added
-require('./utils/insertUserService')();
-
+// Reconnect when closed
+mongoose.connection.on('disconnected', function () {
+   self.connectToDatabase();
+});
 
 //-----------------------------------------------------------------------------
 // passport config

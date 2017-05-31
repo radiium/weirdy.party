@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   web:
@@ -14,8 +14,9 @@ services:
   mongo:
     container_name: weirdy_db
     image: mongo
-    command: mongod --smallfiles
     volumes:
-      - ./db:/data/db
+      - ./db/data:/data/db
+      - ./db/scripts/:/scripts/
     ports:
       - "27017:27017"
+    command: sh -c "cd /scripts/ ; ./init.sh"
