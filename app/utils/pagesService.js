@@ -77,7 +77,7 @@ function generatPreviews(pagesList) {
             for (var i = 0; i < previews.length; i++) {
                 if(previews[i] == '.DS_Store'
                 || previews[i] == '.gitignore') {
-                    files.splice(i,1);
+                    previews.splice(i,1);
                 }
             }
             if (previews === null || previews === undefined
@@ -110,7 +110,7 @@ pages.init = function() {
     for (var i = 0; i < previews.length; i++) {
         if(previews[i] == '.DS_Store'
         || previews[i] == '.gitignore') {
-            files.splice(i,1);
+            previews.splice(i,1);
         }
     }
     if (previews === null || previews === undefined
