@@ -80,12 +80,6 @@ function generatPreviews(pagesList) {
                     previews.splice(i,1);
                 }
             }
-            if (previews === null || previews === undefined
-            ||  previews.length === 0 || previews.length !== global.PAGES.length) {
-                global.hasPreviews = false;
-            } else {
-                global.hasPreviews = true;
-            }
         });
     }
 }
@@ -110,16 +104,14 @@ pages.init = function() {
     for (var i = 0; i < previews.length; i++) {
         if(previews[i] == '.DS_Store'
         || previews[i] == '.gitignore') {
-            previews.splice(i,1);
-        }
+            previews.splice(i, 1);
+        } 
     }
     if (previews === null || previews === undefined
     ||  previews.length === 0 || previews.length !== global.PAGES.length) {
-       
         log.info('[pagesService] Generate previews');
         generatPreviews(pagesList);
-    } 
-
+    }
     log.info('[pagesService] Pages initialised ');
 };
 
