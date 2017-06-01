@@ -60,7 +60,7 @@ function generatPreviews(pagesList) {
     for (var i = 0; i < pages.length; i++) {
 
         var pageUrl      = process.env.BASE_URL + '/pages' + '/' + pages[i];
-        var previewsPath = process.env.BASE_DIR + './public/prevs' + '/' + pages[i] + '.png';
+        var previewsPath = process.env.BASE_DIR + '/public/prevs' + '/' + pages[i] + '.png';
         
         log.info(' == previewsPath == ');
         log.info(pageUrl);
