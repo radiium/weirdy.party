@@ -18,6 +18,12 @@ router.get('/previews', function(req, res) {
     data.previews = [];
 
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
+    for (var i = 0; i < previews.length; i++) {
+        if(previews[i] == '.DS_Store'
+        || previews[i] == '.gitignore') {
+            previews.splice(i, 1);
+        } 
+    }
     if (previews !== null || previews !== undefined ||  previews.length !== 0) {
 
         var pages = global.PAGES;
