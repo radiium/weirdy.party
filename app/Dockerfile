@@ -5,4 +5,5 @@ COPY ./ .
 
 # Install and run pm2
 RUN ["npm", "install", "-g", "pm2"]
+RUN ["npm", "install"]
 CMD ["pm2", "start", "--no-daemon", "process.json", "--env", "production"]
