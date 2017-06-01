@@ -19,10 +19,11 @@ router.get('/previews', function(req, res) {
 
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
     if (previews !== null || previews !== undefined ||  previews.length !== 0) {
+
         var pages = global.PAGES;
         for (var i = 0; i < pages.length; i++) {
             data.previews.push(pages[i]);
-        }tPreviews(pagesList);
+        }
     } else {
         page.init();
     }
