@@ -24,7 +24,7 @@ router.get('/previews', function(req, res) {
             previews.splice(i, 1);
         } 
     }
-    if (previews !== null || previews !== undefined ||  previews.length !== 0) {
+    if (previews !== null && previews !== undefined &&  previews.length !== 0) {
 
         var pages = global.PAGES;
         for (var i = 0; i < pages.length; i++) {
