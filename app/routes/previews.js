@@ -1,9 +1,9 @@
 var express  = require('express');
 var router   = express.Router();
 var log      = require('winston');
+var fs       = require('fs');
 
-var page      = require('../utils/pagesService');
-
+var page     = require('../utils/pagesService');
 
 
 //-----------------------------------------------------------------------------
