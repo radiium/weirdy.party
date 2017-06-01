@@ -1,36 +1,72 @@
+<div id="navBarContainer">
+    <div id="navbar">
 
-<div id="navigation">
+        <!-- MENU -->
+        <div id="menu" class="toggle" style="display: none;">
+            <!-- Home button -->
+            <button id="" class="btn menuBtn" style="display: none;"
+            onclick="window.location.href = window.location.origin;">
+                <div class="triangle"></div>
+                <p class="textBtn">Home</p>
+            </button>
 
-    <input id="toggle" class="item-btn" type="button"  value="&#xf067;"></input>
+            <!-- Editor button -->
+            <% if (data.type !== 'editor' && data.type !== 'login') { %>
+            <button id="" class="btn menuBtn" style="display: none;"
+            onclick="window.location.href = '/editor'">
+                <div class="triangle"></div>
+                <p class="textBtn">Editor</p>
+            </button>
+            <% } %>
 
-    <!-- Tooglable buttons -->
-    <div id="toolbar">
-        <input id="infos-open" class="toolbar-btn item-btn" type="button"  value="&#xf128;"></input>
-        
-        <!-- Open editor Button -->
-        <% if (data.type !== 'editor') { %>
-        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = '/editor'" value="&#xf196;"></input>
-        <% } %>
 
-        <!-- Return to first page Button -->
-        <input class="toolbar-btn item-btn" type="button" onclick="window.location.href = window.location.origin;" value="&#xf015;"></input>
+            <!-- Info button -->
+            <button id="infos-open" class="btn menuBtn" style="display: none;">
+                <div class="triangle"></div>
+                <p class="textBtn">Info</p>
+            </button>
+
+            <!-- Previews button -->
+            <% if (data.type !== 'previews') { %>
+            <button id="" class="btn menuBtn" style="display: none;"
+            onclick="window.location.href = '/previews'">
+                <div class="triangle"></div>
+                <p class="textBtn">Previews</p>
+            </button>
+            <% } %>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div id="navigation">
+            <!-- Left button -->
+            <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
+            <button id="" class="btn navBtn left"
+            onclick="window.location.href = '/pages/' + '<%= data.prevPage %>'">
+                <div class="triangle"></div>
+            </button>
+            <% } else { %>
+            <button id="" class="btn navBtn left hiddenBtn">
+                <div class="triangle"></div>
+            </button>
+            <% } %>
+
+            <!-- menu button -->
+            <button id="toggleBtn" class="btn navBtn">
+                <div class="cross"></div>
+            </button>
+
+            <!-- Right button-->
+            <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
+            <button id="" class="btn navBtn right"
+            onclick="window.location.href = '/pages/' + '<%= data.nextPage %>'">
+                <div class="triangle"></div>
+            </button>
+            <% } else { %>
+            <button id="" class="btn navBtn right hiddenBtn">
+                <div class="triangle"></div>
+            </button>
+            <% } %>
+            
+        </div>
     </div>
-
-    <div  id="navbar">
-        <!-- Previous page Button -->
-        <% if (typeof data.prevPage !== 'undefined' && typeof data.prevPage !== '' ) { %>
-        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/pages/' + '<%= data.prevPage %>'" value="&#xf100;"></input>
-        <% } %>
-
-        <!-- Grid page Button -->
-        <% if (data.type !== 'previews') { %>
-        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/previews'" value="&#xf00a;"></input>
-        <% } %>
-
-        <!-- Next page Button -->
-        <% if (typeof data.nextPage !== 'undefined' && typeof data.nextPage !== '' ) { %>
-        <input class="nav-btn item-btn" type="button" onclick="window.location.href = '/pages/' + '<%= data.nextPage %>'" value="&#xf101;"></input>
-        <% } %>
-    </div>
-
 </div>

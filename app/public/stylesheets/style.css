@@ -26,15 +26,14 @@ input::-moz-focus-inner {
   border: 0; 
 }
 
-#content{
+#content {
     width: 100%;
-    height: 100%;
     transition: all ease-in-out 0.2s;
 }
 
 .blur {
     width: 100%;
-    height: 100%;
+    /*height: 1000px;*/
     -webkit-filter:blur(2px);
        -moz-filter:blur(2px);
         -ms-filter:blur(2px);
@@ -73,73 +72,204 @@ input::-moz-focus-inner {
 /************************
         Navigation
 ************************/
-input[type="button"] {
-    font-family: FontAwesome;
-    padding: 0;
-}
 
-#navigation {
-    z-index: 999999;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap-reverse;
+#navBarContainer {
     position: fixed;
-    left: 10px;
-    bottom: 10px;
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    margin: 0 auto;
+    opacity: 0.7;
 }
-
-#toolbar {
-    margin-top:5px;
-    display: flex;
-    flex-direction: row;
-    width: 0; 
-    height: 50px;
-    -webkit-transition: all ease-in-out 0.2s;
-       -moz-transition: all ease-in-out 0.2s;
-        -ms-transition: all ease-in-out 0.2s;
-         -o-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s; 
+#navBarContainer:hover {
+    opacity: 1;
 }
 
 #navbar {
-    margin-left: 0;
-    margin-top:5px;
+    width: 162px;
+    margin: 0 auto;
+}
+
+/*************************************
+              All button
+**************************************/
+.btn {
+    color: #e0e0e0;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-border-radius: 0.2px;
+       -moz-border-radius: 0.2px;
+        -ms-border-radius: 0.2px;
+         -o-border-radius: 0.2px;
+            border-radius: 0.2px;
+    -webkit-transition: all 0.3s ease;
+       -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;  
+}
+
+.btn:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: #e0e0e0;
+}
+
+.textBtn {
+    margin: 0 auto;
+    overflow: hidden !important;
+    z-index: 1;
+}
+
+/*************************************
+              Menu button
+**************************************/
+#menu {
+    overflow:visible !important;
+    display: flex;
+    flex-direction: column;
+    bottom: 76px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menuBtn {
+    font-size: 1.5rem;
+    position: relative;
+    border: none;
+    width: 158px;
+    height: 50px;
+    margin: 2px;
+}
+
+.menuBtn .triangle {
+    opacity: 0;
+    position: absolute;
+    top: 12px;
+    left: -35px;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 25px solid darkgray;
+    -webkit-transition: all 0.3s ease;
+       -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+}
+.menuBtn:hover .triangle {
+    opacity: 1;
+    left: -10px;
+}
+
+/*************************************
+     Navigation + open Menu button
+**************************************/
+#navigation{
+    z-index: 999;
     display: flex;
     flex-direction: row;
-    height: 50px;
-    width: 185px;
-    -webkit-transition: all ease-in-out 0.2s;
-       -moz-transition: all ease-in-out 0.2s;
-        -ms-transition: all ease-in-out 0.2s;
-         -o-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s; 
+    justify-content: space-between;
 }
 
-/* Toggle Button */
-#toggle {
-    margin-top:5px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+.navBtn {
+    margin: 2px !important;
+    border: none;
     width: 50px;
     height: 50px;
-    left: 200px;
-    font-size: 2rem;
-    margin-right: 5px;
-    border-radius: 0;
-    line-height: 45px;
-    text-align: center;
-    -webkit-transition: all ease-in-out 0.4s;
-       -moz-transition: all ease-in-out 0.4s;
-        -ms-transition: all ease-in-out 0.4s;
-         -o-transition: all ease-in-out 0.4s;
-            transition: all ease-in-out 0.4s;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
 }
 
-#toggle:hover {
-    border-radius: 25px;
+.navBtn .triangle {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.4;
+    margin: 0;
+    position: relative;
+    width: 0;
+    height: 0;
+    -webkit-transition: all 0.3s ;
+       -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
 }
 
+.navBtn:hover {
+    -webkit-border-radius: 30px;
+       -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+         -o-border-radius: 30px;
+            border-radius: 30px;
+}
+
+/* Left button */
+.left .triangle {
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-right: 25px solid #c1c1c1;
+}
+
+.left:hover .triangle {
+    border-right: 25px solid;
+    opacity:1;
+    color: #c1c1c1;
+    left: -5px;
+}
+
+/* Right button */
+.right .triangle {
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 25px solid #c1c1c1;
+}
+
+.right:hover .triangle {
+    border-left: 25px solid;
+    opacity: 1;
+    color: #c1c1c1;
+    left: 40px;
+}
+
+/* Open menu button */
+.cross {
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: darkgray;
+    height: 38px;
+    position: relative;
+    width: 5px;
+
+}
+
+.cross:after {
+    top: calc(50% - 2.5px);
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: darkgray;
+    content: "";
+    height: 5px;
+    position: absolute;
+    width: 38px;
+}
+
+.cross:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+.cross:after:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* Rotation Open menu button */
 .rotation {
+    background: rgba(0,0,0,0.9);
+    border-radius: 25px;
     -webkit-transform: rotate(135deg);
        -moz-transform: rotate(135deg);
         -ms-transform: rotate(135deg);
@@ -147,37 +277,17 @@ input[type="button"] {
             transform: rotate(135deg);
 }
 
-/***********************
-        Buttons
-***********************/
-.item-btn {
-    font-size: 2rem;
+.hiddenBtn,
+.hiddenBtn:hover,
+.hiddenBtn .triangle,
+.hiddenBtn:hover .triangle {
+    top: 0;
+    left: 0;
+    right:0;
+    background: darkgray !important;
     border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    margin-right: 5px;
-    height: 50px;
-}
-
-.toolbar-btn {
-    background-color: rgba(20, 20, 20, 0.5);
-    width: 0;
-    -webkit-transition: all ease-in-out 0.2s;
-       -moz-transition: all ease-in-out 0.2s;
-        -ms-transition: all ease-in-out 0.2s;
-         -o-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s;
-}
-
-.nav-btn {
-    background-color: rgba(20, 20, 20, 0.5);
-    width: 50px;
-}
-
-.toolbar-btn:hover,
-.nav-btn:hover {
-    background-color: rgba(20, 20, 20, 0.9);
+    border-radius: 0;
+    opacity: 0.2;
 }
 
 /***********************

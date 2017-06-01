@@ -8,30 +8,19 @@ function logout() {
 }
 
 // Togle toolbar button
-$( "#toggle" ).click(function() {
-    // close
-    if ($('#toolbar').css('width') === '185px') {
-        $('#toggle').css('border-radius', '0');
-        $('#toggle').toggleClass('rotation');
-        $('#toolbar').css('width', '0');
-        $('.toolbar-btn').css('width', '0');
-        if ($(window).width() < 425) {
-            $('#navbar').css('margin-left', '0');
-        }
-    // Open
+$( "#toggleBtn" ).click(function() {
+    if ($("#menu").css("display") === "none") {
+        $('#toggleBtn').addClass('rotation');
+        $('.textBtn').show();
     } else {
-        $('#toggle').css('border-radius', '25px');
-        $('#toggle').toggleClass('rotation');
-        $('#toolbar').css('width', '185px');
-        $('.toolbar-btn').css('width', '50px');
-        if ($(window).width() < 425) {
-            $('#navbar').css('margin-left', '55px');
-        }
+        $('#toggleBtn').removeClass('rotation');
+        $('.textBtn').hide();
     }
+    $('.menuBtn').slideToggle("0.2s", "linear");
+    $('#menu').slideToggle("0.2s", "linear");
 });
 
 // Infos popup
-
 function closePopup() {
     if ($('#infos').css('top') === '-400px') {
         $('#infos').css('top', '50px');
