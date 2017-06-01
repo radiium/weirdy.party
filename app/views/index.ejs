@@ -39,7 +39,7 @@
 
             <% } else if (data.type === 'previews') { %>
 
-                <%- include('partials/previews.ejs', {previews: data.previews}); %>
+                <%- include('partials/previews.ejs', {data: data}); %>
 
             <% } %>
         </div>

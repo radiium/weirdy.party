@@ -15,8 +15,8 @@ router.get('/previews', function(req, res) {
 
     data.title = 'previews';
     data.type  = 'previews';
-    data.previews = [];
 
+    // Check and remove hidden file in prevs folder
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
     for (var i = 0; i < previews.length; i++) {
         if(previews[i] == '.DS_Store'
@@ -24,14 +24,20 @@ router.get('/previews', function(req, res) {
             previews.splice(i, 1);
         } 
     }
-    if (previews !== null && previews !== undefined &&  previews.length !== 0) {
 
-        var pages = global.PAGES;
-        for (var i = 0; i < pages.length; i++) {
-            data.previews.push(pages[i]);
-        }
+    // check if previews is available
+    if (previews !== null && previews !== undefined &&  previews.length !== 0) {
+        data.hasPreviews = true;
     } else {
+        data.hasPreviews = false;
+        data.message = "Something went wrong with thumbnail previews ..."
         page.init();
+    }
+
+    var pages = global.PAGES;
+    data.pagesNameList = [];
+    for (var i = 0; i < pages.length; i++) {
+        data.pagesNameList.push(pages[i]);
     }
 
     res.render('index', {data: data});

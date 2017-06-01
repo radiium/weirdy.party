@@ -1,21 +1,20 @@
 <div id="columns">
 
-    <% for(var i=0; i < previews.length; i++) {%>
-
+    <% for(var i=0; i < data.pagesNameList.length; i++) {%>
     <figure>
-        <a href="/pages/<%- previews[i] %>">
+        <a href="/pages/<%- data.pagesNameList[i] %>">
         
+        <% if (data.hasPreviews) { %>
         <!-- Thumbnail -->
-        <img src="/prevs/<%- previews[i] %>.png" alt="Page <%- previews[i] %>">
-
+        <img src="/prevs/<%- data.pagesNameList[i] %>.png" alt="Page <%- data.pagesNameList[i] %>">
         <!-- Caption -->
         <figcaption>
-        <h3>/<%- previews[i] %></h3>
+        <h3>/<%- data.pagesNameList[i] %></h3>
         </figcaption>
-
+        <% } else { %>
+        <h3>/<%- data.pagesNameList[i] %></h3>
+        <% } %>
         </a>
     </figure>
-
     <% } %>
-
 </div>
