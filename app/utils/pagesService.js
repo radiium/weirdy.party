@@ -70,6 +70,18 @@ function generatPreviews(pagesList) {
             if (err) {
                 log.info('webshot error');
                 log.info(err);
+                
+            }
+
+            var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
+            for (var i = 0; i < previews.length; i++) {
+                if(previews[i] == '.DS_Store'
+                || previews[i] == '.gitignore') {
+                    files.splice(i,1);
+                }
+            }
+            if (previews === null || previews === undefined
+            ||  previews.length === 0 || previews.length !== global.PAGES.length) {
                 global.hasPreviews = false;
             } else {
                 global.hasPreviews = true;
@@ -95,7 +107,12 @@ pages.init = function() {
     global.PAGES_INDEX   = global.PAGES.length - 1;
 
     var previews = fs.readdirSync(process.env.BASE_DIR + '/public/prevs');
-    global.hasPreviews = false;
+    for (var i = 0; i < previews.length; i++) {
+        if(previews[i] == '.DS_Store'
+        || previews[i] == '.gitignore') {
+            files.splice(i,1);
+        }
+    }
     if (previews === null || previews === undefined
     ||  previews.length === 0 || previews.length !== global.PAGES.length) {
        
