@@ -6,6 +6,7 @@ var log      = require('winston');
 // Configuration
 var router = express.Router();
 
+
 //-----------------------------------------------------------------------------
 // GET Login page
 router.get('/login', function (req, res) {
